@@ -2,6 +2,7 @@ package com.example.toylanguageinterpreter;
 
 import controller.Controller;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.exception.ControllerException;
@@ -24,10 +25,12 @@ public class HelloController {
     }
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onRunButtonClick() {
         try {
-            this.controller.generateInitialState(8);
-            System.out.println(this.repository.getPrgList().getFirst());
+            ObservableList<Integer> indices = this.programs.getSelectionModel().getSelectedIndices();
+
+            this.controller.generateInitialState(indices.getFirst());
+
             this.controller.allStep();
         } catch (ControllerException e) {
             throw new RuntimeException(e);
