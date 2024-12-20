@@ -93,7 +93,7 @@ public class Repository implements IRepository {
 
     private void generateState4() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("varf",new StringType()),
-                new Composed(new Assign("varf", new ValueExp(new StringValue("src/files/test.in"))),
+                new Composed(new Assign("varf", new ValueExp(new StringValue("src/main/java/files/test.in"))),
                         new Composed(new OpenFile(new VarExp("varf")),
                                 new Composed(new VariableDeclaration("varc", new IntType()),
                                         new Composed(new ReadFile(new VarExp("varf"), "varc"),
