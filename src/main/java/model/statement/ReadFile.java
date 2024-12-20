@@ -6,7 +6,7 @@ import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.type.IntType;
 import model.type.StringType;
@@ -17,7 +17,7 @@ import model.value.StringValue;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class ReadFile implements IStmt {
+public class ReadFile implements Statement {
     private IExp exp;
     private String varName;
     private static IntType intType;
@@ -31,7 +31,7 @@ public class ReadFile implements IStmt {
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         ISymTable<String, IValue> symTable = state.getSymTable();
 
         if (!symTable.contains(this.varName)) {
@@ -69,7 +69,7 @@ public class ReadFile implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
+    public Statement deepCopy() {
         return new ReadFile(this.exp.deepCopy(), this.varName);
     }
 

@@ -5,29 +5,29 @@ import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
 
-public class WriteHeapStmt implements IStmt {
-    private String varName;
-    private IExp exp;
-    private RefType refType;
+public class WriteHeap implements Statement {
+    private final String id;
+    private final IExp expression;
+    private static RefType refType;
 
-    public WriteHeapStmt(String varName, IExp exp) {
-        this.varName = varName;
-        this.exp = exp;
-        this.refType = new RefType(null);
+    public WriteHeap(String id, IExp expression) {
+        this.id = id;
+        this.expression = expression;
+        refType = new RefType(null);
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue value = state.getSymTable().lookup(this.varName);
+            IValue value = state.getSymTable().lookup(this.id);
 
-            if (!value.getType().equals(this.refType)) {
+            if (!value.getType().equals(refType)) {
                 throw new StmtException("Variable is not a RefType\n");
             }
 
@@ -39,7 +39,7 @@ public class WriteHeapStmt implements IStmt {
                 throw new StmtException("Address is not in Heap\n");
             }
 
-            IValue res = this.exp.eval(state.getSymTable(), state.getHeap());
+            IValue res = this.expression.eval(state.getSymTable(), state.getHeap());
 
             if (!res.getType().equals(refValue.getLocationType())) {
                 throw new StmtException("Expression type doesn't match the location type\n");
@@ -54,15 +54,15 @@ public class WriteHeapStmt implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new WriteHeapStmt(this.varName, this.exp.deepCopy());
+    public Statement deepCopy() {
+        return new WriteHeap(this.id, this.expression.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            IType expType = this.exp.typeCheck(typeEnv);
-            IType varType = typeEnv.lookup(this.varName);
+            IType expType = this.expression.typeCheck(typeEnv);
+            IType varType = typeEnv.lookup(this.id);
 
             if (varType.equals(new RefType(expType))) {
                 return typeEnv;
@@ -75,6 +75,6 @@ public class WriteHeapStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "wh(" + this.varName + ", " + this.exp + ")";
+        return "wh(" + this.id + ", " + this.expression + ")";
     }
 }

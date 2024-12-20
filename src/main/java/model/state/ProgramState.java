@@ -4,24 +4,24 @@ import model.adt.*;
 import model.exception.StackException;
 import model.exception.StateException;
 import model.exception.StmtException;
-import model.statement.CompStmt;
-import model.statement.IStmt;
+import model.statement.Composed;
+import model.statement.Statement;
 import model.value.IValue;
 import model.value.StringValue;
 
 import java.io.BufferedReader;
 
-public class PrgState {
-    private IExeStack<IStmt> exeStack;
+public class ProgramState {
+    private IExeStack<Statement> exeStack;
     private ISymTable<String, IValue> symTable;
     private IOutList<IValue> out;
-    private IStmt originalProgram;
+    private Statement originalProgram;
     private IFileTable<StringValue, BufferedReader> fileTable;
     private IHeap heap;
     private int id;
     private static int lastId = 0;
 
-    public PrgState(IExeStack<IStmt> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, IStmt originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap) {
+    public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
@@ -37,20 +37,20 @@ public class PrgState {
         this.id = lastId++;
     }
 
-    private void convertToStack(IStmt stmt) {
-        IStmt first, second;
+    private void convertToStack(Statement stmt) {
+        Statement first, second;
         //stmt.toString().startsWith("comp")
-        if (stmt instanceof CompStmt) {
-            first = ((CompStmt)stmt).getFirst();
-            second = ((CompStmt)stmt).getSecond();
+        if (stmt instanceof Composed) {
+            first = ((Composed)stmt).getFirst();
+            second = ((Composed)stmt).getSecond();
 
-            if (second instanceof CompStmt) {
+            if (second instanceof Composed) {
                 this.convertToStack(second);
             } else {
                 this.exeStack.push(second);
             }
 
-            if (first instanceof CompStmt) {
+            if (first instanceof Composed) {
                 this.convertToStack(first);
             } else {
                 this.exeStack.push(first);
@@ -60,11 +60,11 @@ public class PrgState {
         }
     }
 
-    public IExeStack<IStmt> getExeStack() { return this.exeStack; }
+    public IExeStack<Statement> getExeStack() { return this.exeStack; }
 
     public IOutList<IValue> getOut() { return this.out; }
 
-    public IStmt getOriginalProgram() {
+    public Statement getOriginalProgram() {
         return this.originalProgram;
     }
 
@@ -82,9 +82,9 @@ public class PrgState {
         return !this.exeStack.isEmpty();
     }
 
-    public PrgState oneStep() throws StateException {
+    public ProgramState oneStep() throws StateException {
         try {
-            IStmt crt = this.exeStack.pop();
+            Statement crt = this.exeStack.pop();
             return crt.execute(this);
         } catch (StackException | StmtException e) {
             throw new StateException(e.getMessage());
@@ -93,6 +93,6 @@ public class PrgState {
 
     @Override
     public String toString() {
-        return "PrgState no. " + this.id + " is:\n" + this.exeStack + this.symTable + this.out + this.fileTable + this.heap;
+        return "ProgramState no. " + this.id + " is:\n" + this.exeStack + this.symTable + this.out + this.fileTable + this.heap;
     }
 }

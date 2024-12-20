@@ -5,7 +5,7 @@ import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.type.StringType;
 import model.value.IValue;
@@ -14,19 +14,19 @@ import model.value.StringValue;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class CloseRFile implements IStmt {
-    private IExp exp;
+public class CloseFile implements Statement {
+    private final IExp expression;
     private static StringType stringType;
 
-    public CloseRFile(IExp exp) {
-        this.exp = exp;
+    public CloseFile(IExp expression) {
+        this.expression = expression;
         stringType = new StringType();
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue eval = this.exp.eval(state.getSymTable(), state.getHeap());
+            IValue eval = this.expression.eval(state.getSymTable(), state.getHeap());
 
             if (!eval.getType().equals(stringType)) {
                 throw new ExpressionException("Expression is not a string");
@@ -43,14 +43,14 @@ public class CloseRFile implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new CloseRFile(this.exp.deepCopy());
+    public Statement deepCopy() {
+        return new CloseFile(this.expression.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            if (this.exp.typeCheck(typeEnv).equals(stringType)) {
+            if (this.expression.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;
             }
             throw new StmtException("Expression is not a String.\n");
@@ -61,6 +61,6 @@ public class CloseRFile implements IStmt {
 
     @Override
     public String toString() {
-        return "Close file: " + this.exp;
+        return "Close file: " + this.expression;
     }
 }

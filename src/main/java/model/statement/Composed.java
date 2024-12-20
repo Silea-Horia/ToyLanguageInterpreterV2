@@ -3,31 +3,31 @@ package model.statement;
 import model.adt.IDictionary;
 import model.adt.IExeStack;
 import model.exception.StmtException;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 
-public class CompStmt implements IStmt {
-    private IStmt first;
-    private IStmt second;
+public class Composed implements Statement {
+    private final Statement first;
+    private final Statement second;
 
-    public CompStmt(IStmt first, IStmt second) {
+    public Composed(Statement first, Statement second) {
         this.first = first;
         this.second = second;
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
-        IExeStack<IStmt> stack = state.getExeStack();
+    public ProgramState execute(ProgramState state) throws StmtException {
+        IExeStack<Statement> stack = state.getExeStack();
         stack.push(this.second);
         stack.push(this.first);
         return null;
     }
 
-    public IStmt getFirst() {
+    public Statement getFirst() {
         return this.first;
     }
 
-    public IStmt getSecond() {
+    public Statement getSecond() {
         return this.second;
     }
 
@@ -37,8 +37,8 @@ public class CompStmt implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new CompStmt(this.first.deepCopy(), this.second.deepCopy());
+    public Statement deepCopy() {
+        return new Composed(this.first.deepCopy(), this.second.deepCopy());
     }
 
     @Override

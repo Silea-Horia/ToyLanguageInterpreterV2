@@ -4,29 +4,29 @@ import model.adt.IDictionary;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.BoolType;
 import model.type.IType;
 import model.value.BoolValue;
 import model.value.IValue;
 
-public class WhileStmt implements IStmt {
-    private IExp condition;
-    private IStmt command;
-    private BoolType boolType;
+public class While implements Statement {
+    private final IExp condition;
+    private final Statement command;
+    private static BoolType boolType;
 
-    public WhileStmt(IExp condition, IStmt command) {
+    public While(IExp condition, Statement command) {
         this.condition = condition;
         this.command = command;
-        this.boolType = new BoolType();
+        boolType = new BoolType();
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         try {
             IValue eval = this.condition.eval(state.getSymTable(), state.getHeap());
 
-            if (!eval.getType().equals(this.boolType)) {
+            if (!eval.getType().equals(boolType)) {
                 throw new StmtException("Condition is not a bool type\n");
             }
 
@@ -42,14 +42,14 @@ public class WhileStmt implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new WhileStmt(this.condition.deepCopy(), this.command.deepCopy());
+    public Statement deepCopy() {
+        return new While(this.condition.deepCopy(), this.command.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            if (this.condition.typeCheck(typeEnv).equals(this.boolType)) {
+            if (this.condition.typeCheck(typeEnv).equals(boolType)) {
                 this.command.typeCheck(typeEnv);
                 return typeEnv;
             }

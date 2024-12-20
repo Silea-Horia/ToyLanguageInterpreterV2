@@ -4,7 +4,7 @@ import model.adt.*;
 import model.exception.RepoException;
 import model.exception.StmtException;
 import model.expression.*;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.statement.*;
 import model.type.BoolType;
 import model.type.IntType;
@@ -21,10 +21,10 @@ import java.util.List;
 import static model.expression.RelationalOperation.GREATER;
 
 public class Repository implements IRepository {
-    private List<PrgState> programs;
+    private List<ProgramState> programs;
     private String logFilePath;
-    private IStmt initialStatement;
-    private ArrayList<IStmt> generatedStatements;
+    private Statement initialStatement;
+    private ArrayList<Statement> generatedStatements;
 
     public Repository(String logFilePath) {
         this.programs = new ArrayList<>();
@@ -40,12 +40,12 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public void addPrgState(PrgState state) {
+    public void addPrgState(ProgramState state) {
         this.programs.add(state);
     }
 
     @Override
-    public void logPrgState(PrgState state) throws RepoException {
+    public void logPrgState(ProgramState state) throws RepoException {
         try {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(this.logFilePath, true)));
             pw.println(state);
@@ -56,99 +56,99 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public List<PrgState> getPrgList() {
+    public List<ProgramState> getPrgList() {
         return this.programs;
     }
 
     @Override
-    public void setPrgList(List<PrgState> newList) {
+    public void setPrgList(List<ProgramState> newList) {
         this.programs = newList;
     }
 
     @Override
-    public ArrayList<IStmt> getGeneratedStatements() {
+    public ArrayList<Statement> getGeneratedStatements() {
         return this.generatedStatements;
     }
 
     private void generateState1() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("v", new IntType()),
-                            new CompStmt(new AssignStmt("v",new ValueExp(new IntValue(2))), new PrintStmt(new VarExp("v")))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("v", new IntType()),
+                            new Composed(new Assign("v",new ValueExp(new IntValue(2))), new Print(new VarExp("v")))));
     }
 
     private void generateState2() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("a",new IntType()),
-                new CompStmt(new VarDeclStmt("b",new IntType()),
-                        new CompStmt(new AssignStmt("a", new ArithExp(new ValueExp(new IntValue(2)),new ArithExp(new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5)), '*'), '+')),
-                                new CompStmt(new AssignStmt("b",new ArithExp(new VarExp("a"), new ValueExp(new IntValue(1)), '+')),
-                                        new PrintStmt(new VarExp("b")))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("a",new IntType()),
+                new Composed(new VariableDeclaration("b",new IntType()),
+                        new Composed(new Assign("a", new ArithExp(new ValueExp(new IntValue(2)),new ArithExp(new ValueExp(new IntValue(3)), new ValueExp(new IntValue(5)), '*'), '+')),
+                                new Composed(new Assign("b",new ArithExp(new VarExp("a"), new ValueExp(new IntValue(1)), '+')),
+                                        new Print(new VarExp("b")))))));
     }
 
     private void generateState3() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("a",new BoolType()),
-                new CompStmt(new VarDeclStmt("v", new IntType()),
-                        new CompStmt(new AssignStmt("a", new ValueExp(new BoolValue(true))),
-                                new CompStmt(new IfStmt(new VarExp("a"),new AssignStmt("v",new ValueExp(new
-                                        IntValue(2))), new AssignStmt("v", new ValueExp(new IntValue(3)))), new PrintStmt(new VarExp("v")))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("a",new BoolType()),
+                new Composed(new VariableDeclaration("v", new IntType()),
+                        new Composed(new Assign("a", new ValueExp(new BoolValue(true))),
+                                new Composed(new If(new VarExp("a"),new Assign("v",new ValueExp(new
+                                        IntValue(2))), new Assign("v", new ValueExp(new IntValue(3)))), new Print(new VarExp("v")))))));
     }
 
     private void generateState4() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("varf",new StringType()),
-                new CompStmt(new AssignStmt("varf", new ValueExp(new StringValue("src/files/test.in"))),
-                        new CompStmt(new OpenRFile(new VarExp("varf")),
-                                new CompStmt(new VarDeclStmt("varc", new IntType()),
-                                        new CompStmt(new ReadFile(new VarExp("varf"), "varc"),
-                                                new CompStmt(new PrintStmt(new VarExp("varc")),
-                                                        new CompStmt(new ReadFile(new VarExp("varf"), "varc"),
-                                                                new CompStmt(new PrintStmt(new VarExp("varc")),
-                                                                        new CloseRFile(new VarExp("varf")))))))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("varf",new StringType()),
+                new Composed(new Assign("varf", new ValueExp(new StringValue("src/files/test.in"))),
+                        new Composed(new OpenFile(new VarExp("varf")),
+                                new Composed(new VariableDeclaration("varc", new IntType()),
+                                        new Composed(new ReadFile(new VarExp("varf"), "varc"),
+                                                new Composed(new Print(new VarExp("varc")),
+                                                        new Composed(new ReadFile(new VarExp("varf"), "varc"),
+                                                                new Composed(new Print(new VarExp("varc")),
+                                                                        new CloseFile(new VarExp("varf")))))))))));
     }
 
     private void generateState5() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
-                new CompStmt(new NewStmt("v", new ValueExp(new IntValue(20))),
-                        new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
-                                new CompStmt(new NewStmt("a", new VarExp("v")),
-                                        new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
-                                                new CompStmt(new PrintStmt(new ArithExp(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))), new ValueExp(new IntValue(5)), '+')),
-                                                        new CompStmt(new PrintStmt(new ReadHeapExp(new VarExp("v"))),
-                                                                new CompStmt(new WriteHeapStmt("v", new ValueExp(new IntValue(30))),
-                                                                        new PrintStmt(new ReadHeapExp(new VarExp("v"))))))))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("v", new RefType(new IntType())),
+                new Composed(new New("v", new ValueExp(new IntValue(20))),
+                        new Composed(new VariableDeclaration("a", new RefType(new RefType(new IntType()))),
+                                new Composed(new New("a", new VarExp("v")),
+                                        new Composed(new Print(new ReadHeapExp(new VarExp("v"))),
+                                                new Composed(new Print(new ArithExp(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))), new ValueExp(new IntValue(5)), '+')),
+                                                        new Composed(new Print(new ReadHeapExp(new VarExp("v"))),
+                                                                new Composed(new WriteHeap("v", new ValueExp(new IntValue(30))),
+                                                                        new Print(new ReadHeapExp(new VarExp("v"))))))))))));
     }
 
     private void generateState6() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("v", new RefType(new IntType())),
-                new CompStmt(new NewStmt("v", new ValueExp(new IntValue(20))),
-                        new CompStmt(new VarDeclStmt("a", new RefType(new RefType(new IntType()))),
-                                new CompStmt(new NewStmt("a", new VarExp("v")),
-                                        new CompStmt(new NewStmt("v", new ValueExp(new IntValue(30))),
-                                                new CompStmt(new PrintStmt(new ReadHeapExp(new ReadHeapExp(new VarExp("a")))),
-                                                        new NewStmt("v", new ValueExp(new IntValue(50))))))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("v", new RefType(new IntType())),
+                new Composed(new New("v", new ValueExp(new IntValue(20))),
+                        new Composed(new VariableDeclaration("a", new RefType(new RefType(new IntType()))),
+                                new Composed(new New("a", new VarExp("v")),
+                                        new Composed(new New("v", new ValueExp(new IntValue(30))),
+                                                new Composed(new Print(new ReadHeapExp(new ReadHeapExp(new VarExp("a")))),
+                                                        new New("v", new ValueExp(new IntValue(50))))))))));
     }
 
     private void generateState7() {
-        this.generatedStatements.add(new CompStmt(new VarDeclStmt("v", new IntType()),
-                new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(4))),
-                        new CompStmt(new WhileStmt(new RelationalExp(new VarExp("v"), new ValueExp(new IntValue(0)), GREATER),
-                                new AssignStmt("v", new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), '-'))),
-                                new PrintStmt(new VarExp("v"))))));
+        this.generatedStatements.add(new Composed(new VariableDeclaration("v", new IntType()),
+                new Composed(new Assign("v", new ValueExp(new IntValue(4))),
+                        new Composed(new While(new RelationalExp(new VarExp("v"), new ValueExp(new IntValue(0)), GREATER),
+                                new Assign("v", new ArithExp(new VarExp("v"), new ValueExp(new IntValue(1)), '-'))),
+                                new Print(new VarExp("v"))))));
     }
 
     private void generateState8() {
-        this.generatedStatements.add(new CompStmt(
-          new VarDeclStmt("v", new IntType()), new CompStmt(
-                  new VarDeclStmt("a", new RefType(new IntType())), new CompStmt(
-                          new AssignStmt("v", new ValueExp(new IntValue(10))), new CompStmt(
-                                  new NewStmt("a", new ValueExp(new IntValue(22))), new CompStmt(
-                                          new ForkStmt(new CompStmt(
-                                                  new WriteHeapStmt("a", new ValueExp(new IntValue(30))), new CompStmt(
-                                                          new AssignStmt("v", new ValueExp(new IntValue(32))), new CompStmt(
-                                                                  new PrintStmt(new VarExp("v")),
-                                                                    new PrintStmt(new ReadHeapExp(new VarExp("a")))
+        this.generatedStatements.add(new Composed(
+          new VariableDeclaration("v", new IntType()), new Composed(
+                  new VariableDeclaration("a", new RefType(new IntType())), new Composed(
+                          new Assign("v", new ValueExp(new IntValue(10))), new Composed(
+                                  new New("a", new ValueExp(new IntValue(22))), new Composed(
+                                          new Fork(new Composed(
+                                                  new WriteHeap("a", new ValueExp(new IntValue(30))), new Composed(
+                                                          new Assign("v", new ValueExp(new IntValue(32))), new Composed(
+                                                                  new Print(new VarExp("v")),
+                                                                    new Print(new ReadHeapExp(new VarExp("a")))
                                           )
                                           )
                                           )
-                                          ), new CompStmt(
-                                                  new PrintStmt(new VarExp("v")), new PrintStmt(new ReadHeapExp(new VarExp("a")))
+                                          ), new Composed(
+                                                  new Print(new VarExp("v")), new Print(new ReadHeapExp(new VarExp("a")))
                                             )
                                 )
                         )
@@ -159,20 +159,20 @@ public class Repository implements IRepository {
 
     private void generateState9() {
         // Ref inv v; new(v, 20); Ref Ref int a; new(a, v); fork(Ref int b; new(v,30); new(b,v););
-        this.generatedStatements.add(new CompStmt(
-          new VarDeclStmt("v", new RefType(new IntType())), new CompStmt(
-                  new NewStmt("v", new ValueExp(new IntValue(20))), new CompStmt(
-                          new VarDeclStmt("a", new RefType(new RefType(new IntType()))), new CompStmt(
-                                  new NewStmt("a", new VarExp("v")), new CompStmt(
-                                      new ForkStmt(
-                                              new CompStmt(
-                                                      new VarDeclStmt("b", new RefType(new RefType(new IntType()))), new CompStmt(
-                                                        new NewStmt("v", new ValueExp(new IntValue(30))),
-                                                        new NewStmt("b", new VarExp("v"))
+        this.generatedStatements.add(new Composed(
+          new VariableDeclaration("v", new RefType(new IntType())), new Composed(
+                  new New("v", new ValueExp(new IntValue(20))), new Composed(
+                          new VariableDeclaration("a", new RefType(new RefType(new IntType()))), new Composed(
+                                  new New("a", new VarExp("v")), new Composed(
+                                      new Fork(
+                                              new Composed(
+                                                      new VariableDeclaration("b", new RefType(new RefType(new IntType()))), new Composed(
+                                                        new New("v", new ValueExp(new IntValue(30))),
+                                                        new New("b", new VarExp("v"))
                                               )
                                               )
-                                      ), new CompStmt(
-                                              new PrintStmt(new ReadHeapExp(new VarExp("v"))), new PrintStmt(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))))
+                                      ), new Composed(
+                                              new Print(new ReadHeapExp(new VarExp("v"))), new Print(new ReadHeapExp(new ReadHeapExp(new VarExp("a"))))
         )
         )
         )
@@ -204,6 +204,6 @@ public class Repository implements IRepository {
             throw new RepoException(e.getMessage());
         }
         this.programs.clear();
-        this.programs.add(new PrgState(new ExeStack<>(), new SymTable<>(), new Out<>(), this.initialStatement, new FileTable<>(), new Heap()));
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), this.initialStatement, new FileTable<>(), new Heap()));
     }
 }

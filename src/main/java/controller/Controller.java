@@ -2,7 +2,7 @@ package controller;
 
 import model.adt.IHeap;
 import model.exception.*;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.value.IValue;
 import model.value.RefValue;
 import repository.IRepository;
@@ -40,7 +40,7 @@ public class Controller {
         }
     }
 
-    private void logAll(List<PrgState> prgStateList) {
+    private void logAll(List<ProgramState> prgStateList) {
         prgStateList.forEach(prg -> {
             try {
                 this.repository.logPrgState(prg);
@@ -54,7 +54,7 @@ public class Controller {
     public void allStep() throws ControllerException {
         this.executor = Executors.newFixedThreadPool(2);
 
-        List<PrgState> prgStateList = this.removeCompletedPrg(this.repository.getPrgList());
+        List<ProgramState> prgStateList = this.removeCompletedPrg(this.repository.getPrgList());
 
         this.logAll(prgStateList);
 
@@ -113,15 +113,15 @@ public class Controller {
                 ).collect(Collectors.toList());
     }
 
-    private List<PrgState> removeCompletedPrg(List<PrgState> prgStateList) {
-        return prgStateList.stream().filter(PrgState::isNotCompleted).collect(Collectors.toList());
+    private List<ProgramState> removeCompletedPrg(List<ProgramState> prgStateList) {
+        return prgStateList.stream().filter(ProgramState::isNotCompleted).collect(Collectors.toList());
     }
 
-    public void oneStepForAll(List<PrgState> prgStateList) {
-        List<Callable<PrgState>> callList = prgStateList.stream().map((PrgState p) -> (Callable<PrgState>)(p::oneStep)).toList();
+    public void oneStepForAll(List<ProgramState> programStateList) {
+        List<Callable<ProgramState>> callList = programStateList.stream().map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep)).toList();
 
         try {
-            List<PrgState> newPrgList = this.executor.invokeAll(callList).stream().map(future ->
+            List<ProgramState> newPrgList = this.executor.invokeAll(callList).stream().map(future ->
             {
                 try {
                     return future.get();
@@ -131,9 +131,9 @@ public class Controller {
                 return null;
             }).filter(Objects::nonNull).toList();
 
-            prgStateList.addAll(newPrgList);
+            programStateList.addAll(newPrgList);
 
-            this.repository.setPrgList(prgStateList);
+            this.repository.setPrgList(programStateList);
 
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());

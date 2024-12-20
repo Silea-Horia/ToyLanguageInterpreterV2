@@ -5,27 +5,25 @@ import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
 
-public class NewStmt implements IStmt {
-    private String varName;
-    private IExp exp;
-    private RefType refType;
+public class New implements Statement {
+    private final String id;
+    private final IExp expression;
 
-    public NewStmt(String varName, IExp exp) {
-        this.varName = varName;
-        this.exp = exp;
-        //this.refType = new RefType(null);
+    public New(String id, IExp expression) {
+        this.id = id;
+        this.expression = expression;
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue value = state.getSymTable().lookup(this.varName);
+            IValue value = state.getSymTable().lookup(this.id);
             IType type = value.getType();
             if (!value.getType().equals(type)) {
                 throw new StmtException("Variable is not a ref type\n");
@@ -33,7 +31,7 @@ public class NewStmt implements IStmt {
 
             RefValue refValue = (RefValue) value;
 
-            IValue res = this.exp.eval(state.getSymTable(), state.getHeap());
+            IValue res = this.expression.eval(state.getSymTable(), state.getHeap());
 
             if (!refValue.getLocationType().equals(res.getType())) {
                 throw new StmtException("The expression type is different from the reference type😅\n");
@@ -41,7 +39,7 @@ public class NewStmt implements IStmt {
 
             int address = state.getHeap().allocate(res);
 
-            state.getSymTable().insert(this.varName, new RefValue(address, refValue.getLocationType()));
+            state.getSymTable().insert(this.id, new RefValue(address, refValue.getLocationType()));
 
             return null;
         } catch (DictionaryException | ExpressionException e) {
@@ -51,15 +49,15 @@ public class NewStmt implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new NewStmt(this.varName, this.exp.deepCopy());
+    public Statement deepCopy() {
+        return new New(this.id, this.expression.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            IType varType = typeEnv.lookup(this.varName);
-            IType expType = this.exp.typeCheck(typeEnv);
+            IType varType = typeEnv.lookup(this.id);
+            IType expType = this.expression.typeCheck(typeEnv);
             if (varType.equals(new RefType(expType))) {
                 return typeEnv;
             }
@@ -71,6 +69,6 @@ public class NewStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "new(" + this.varName + ", " + this.exp + ')';
+        return "new(" + this.id + ", " + this.expression + ')';
     }
 }

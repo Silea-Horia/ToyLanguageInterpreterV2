@@ -5,22 +5,22 @@ import model.adt.IOutList;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.value.IValue;
 
-public class PrintStmt implements IStmt {
-    IExp exp;
+public class Print implements Statement {
+    private final IExp expression;
 
-    public PrintStmt(IExp exp) {
-        this.exp = exp;
+    public Print(IExp expression) {
+        this.expression = expression;
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         IOutList<IValue> list = state.getOut();
         try {
-            list.add(this.exp.eval(state.getSymTable(), state.getHeap()));
+            list.add(this.expression.eval(state.getSymTable(), state.getHeap()));
         } catch (ExpressionException e) {
             throw new StmtException(e.getMessage());
         }
@@ -29,18 +29,18 @@ public class PrintStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "print(" + this.exp + ")";
+        return "print(" + this.expression + ")";
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new PrintStmt(this.exp.deepCopy());
+    public Statement deepCopy() {
+        return new Print(this.expression.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            this.exp.typeCheck(typeEnv);
+            this.expression.typeCheck(typeEnv);
         } catch (ExpressionException e) {
             throw new StmtException(e.getMessage());
         }

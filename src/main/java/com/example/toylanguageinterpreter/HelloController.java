@@ -3,11 +3,9 @@ package com.example.toylanguageinterpreter;
 import controller.Controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.exception.ControllerException;
-import model.state.PrgState;
-import model.statement.IStmt;
+import model.statement.Statement;
 import repository.IRepository;
 import repository.Repository;
 
@@ -16,7 +14,7 @@ public class HelloController {
     private Controller controller;
 
     @FXML
-    private ListView<IStmt> programs;
+    private ListView<Statement> programs;
 
     @FXML
     public void initialize() {

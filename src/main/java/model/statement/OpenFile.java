@@ -4,7 +4,7 @@ import model.adt.IDictionary;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.type.StringType;
 import model.value.IValue;
@@ -14,19 +14,19 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class OpenRFile implements IStmt {
-    private IExp exp;
+public class OpenFile implements Statement {
+    private final IExp path;
     private static StringType stringType;
 
-    public OpenRFile(IExp exp) {
-        this.exp = exp;
+    public OpenFile(IExp path) {
+        this.path = path;
         stringType = new StringType();
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue result = this.exp.eval(state.getSymTable(), state.getHeap());
+            IValue result = this.path.eval(state.getSymTable(), state.getHeap());
 
             if (!result.getType().equals(stringType)) {
                 throw new StmtException("Expression is not a string\n");
@@ -53,14 +53,14 @@ public class OpenRFile implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new OpenRFile(exp.deepCopy());
+    public Statement deepCopy() {
+        return new OpenFile(path.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            if (this.exp.typeCheck(typeEnv).equals(stringType)) {
+            if (this.path.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;
             }
             throw new StmtException("Expression is not a String.\n");
@@ -71,6 +71,6 @@ public class OpenRFile implements IStmt {
 
     @Override
     public String toString() {
-        return "Open file: " + this.exp;
+        return "Open file: " + this.path;
     }
 }

@@ -2,10 +2,10 @@ package model.statement;
 
 import model.adt.IDictionary;
 import model.exception.StmtException;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 
-public class NopStmt implements IStmt {
+public class Nop implements Statement {
 
     @Override
     public String toString() {
@@ -13,13 +13,13 @@ public class NopStmt implements IStmt {
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
+    public ProgramState execute(ProgramState state) throws StmtException {
         return null;
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new NopStmt();
+    public Statement deepCopy() {
+        return new Nop();
     }
 
     @Override

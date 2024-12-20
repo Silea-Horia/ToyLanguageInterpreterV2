@@ -2,45 +2,42 @@ package model.statement;
 
 import model.adt.IDictionary;
 import model.adt.ISymTable;
-import model.adt.IExeStack;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
-import model.state.PrgState;
+import model.state.ProgramState;
 import model.type.IType;
 import model.value.IValue;
 
-public class AssignStmt implements IStmt {
-    private String id;
-    private IExp exp;
+public class Assign implements Statement {
+    private final String id;
+    private final IExp expression;
 
-    public AssignStmt(String id, IExp exp) {
+    public Assign(String id, IExp expression) {
         this.id = id;
-        this.exp = exp;
+        this.expression = expression;
     }
 
     @Override
     public String toString() {
-        return this.id + "=" + this.exp;
+        return this.id + "=" + this.expression;
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StmtException {
-        IExeStack<IStmt> stack = state.getExeStack();
-        ISymTable<String, IValue> tbl = state.getSymTable();
-        IType typeId;
-        if (tbl.contains(this.id)) {
-            IValue val;
+    public ProgramState execute(ProgramState state) throws StmtException {
+        ISymTable<String, IValue> symbols = state.getSymTable();
+        if (symbols.contains(this.id)) {
+            IValue value;
             try {
-                val = this.exp.eval(tbl, state.getHeap());
+                value = this.expression.eval(symbols, state.getHeap());
             } catch (ExpressionException e) {
                 throw new StmtException(e.getMessage());
             }
             try {
-                typeId = (tbl.lookup(this.id)).getType();
-                if (val.getType().equals(typeId)) {
-                    tbl.insert(this.id, val);
+                IType typeId = (symbols.lookup(this.id)).getType();
+                if (value.getType().equals(typeId)) {
+                    symbols.insert(this.id, value);
                 } else {
                     throw new StmtException("Declared type of variable " + this.id + " doesn't match the type of the assigned expression!\n");
                 }
@@ -54,14 +51,14 @@ public class AssignStmt implements IStmt {
     }
 
     @Override
-    public IStmt deepCopy() {
-        return new AssignStmt(this.id, this.exp.deepCopy());
+    public Statement deepCopy() {
+        return new Assign(this.id, this.expression.deepCopy());
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            if (typeEnv.lookup(this.id).equals(this.exp.typeCheck(typeEnv))) {
+            if (typeEnv.lookup(this.id).equals(this.expression.typeCheck(typeEnv))) {
                 return typeEnv;
             }
             throw new StmtException("RHS and LHS have different types.\n");
