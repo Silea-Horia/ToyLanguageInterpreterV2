@@ -24,18 +24,10 @@ public class New implements Statement {
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
             IValue value = state.getSymTable().lookup(this.id);
-            IType type = value.getType();
-            if (!value.getType().equals(type)) {
-                throw new StmtException("Variable is not a ref type\n");
-            }
 
             RefValue refValue = (RefValue) value;
 
             IValue res = this.expression.eval(state.getSymTable(), state.getHeap());
-
-            if (!refValue.getLocationType().equals(res.getType())) {
-                throw new StmtException("The expression type is different from the reference type😅\n");
-            }
 
             int address = state.getHeap().allocate(res);
 

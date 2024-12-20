@@ -22,9 +22,8 @@ import static model.expression.RelationalOperation.GREATER;
 
 public class Repository implements IRepository {
     private List<ProgramState> programs;
-    private String logFilePath;
-    private Statement initialStatement;
-    private ArrayList<Statement> generatedStatements;
+    private final String logFilePath;
+    private final ArrayList<Statement> generatedStatements;
 
     public Repository(String logFilePath) {
         this.programs = new ArrayList<>();
@@ -193,17 +192,15 @@ public class Repository implements IRepository {
         this.generateState9();
     }
 
-
-
     @Override
     public void setState(int option) throws RepoException{
-        this.initialStatement = this.generatedStatements.get(option);
+        Statement initialStatement = this.generatedStatements.get(option);
         try {
-            this.initialStatement.typeCheck(new Dictionary<>());
+            initialStatement.typeCheck(new Dictionary<>());
         } catch (StmtException e) {
             throw new RepoException(e.getMessage());
         }
         this.programs.clear();
-        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), this.initialStatement, new FileTable<>(), new Heap()));
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new Heap()));
     }
 }

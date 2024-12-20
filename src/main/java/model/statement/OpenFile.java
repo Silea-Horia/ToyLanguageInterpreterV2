@@ -28,10 +28,6 @@ public class OpenFile implements Statement {
         try {
             IValue result = this.path.eval(state.getSymTable(), state.getHeap());
 
-            if (!result.getType().equals(stringType)) {
-                throw new StmtException("Expression is not a string\n");
-            }
-
             String filePath = ((StringValue) result).getValue();
 
             if (state.getSymTable().contains(filePath)) {

@@ -28,10 +28,6 @@ public class CloseFile implements Statement {
         try {
             IValue eval = this.expression.eval(state.getSymTable(), state.getHeap());
 
-            if (!eval.getType().equals(stringType)) {
-                throw new ExpressionException("Expression is not a string");
-            }
-
             try (BufferedReader br = state.getFileTable().lookup((StringValue) eval)){
                 br.close();
                 state.getFileTable().remove((StringValue) eval);

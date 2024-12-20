@@ -35,7 +35,7 @@ public class MenuLogic {
             ObservableList<Integer> indices = this.programs.getSelectionModel().getSelectedIndices();
 
             this.controller.generateInitialState(indices.getFirst()); //TODO HANDLE NO INDEX
-
+            this.controller.allStep();
             this.createProgramWindow();
         } catch (ControllerException | IOException e) {
             throw new RuntimeException(e);

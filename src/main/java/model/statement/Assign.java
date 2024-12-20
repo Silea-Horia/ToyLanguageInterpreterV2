@@ -27,6 +27,7 @@ public class Assign implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         ISymTable<String, IValue> symbols = state.getSymTable();
+
         if (symbols.contains(this.id)) {
             IValue value;
             try {
@@ -34,16 +35,8 @@ public class Assign implements Statement {
             } catch (ExpressionException e) {
                 throw new StmtException(e.getMessage());
             }
-            try {
-                IType typeId = (symbols.lookup(this.id)).getType();
-                if (value.getType().equals(typeId)) {
-                    symbols.insert(this.id, value);
-                } else {
-                    throw new StmtException("Declared type of variable " + this.id + " doesn't match the type of the assigned expression!\n");
-                }
-            } catch (DictionaryException _) {
-                throw new StmtException("WTF?!\n");
-            }
+
+            symbols.insert(this.id, value);
         } else {
             throw new StmtException("The used variable " + this.id + " was not declared before usage!\n");
         }

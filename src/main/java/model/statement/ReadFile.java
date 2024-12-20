@@ -18,14 +18,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ReadFile implements Statement {
-    private IExp exp;
-    private String varName;
+    private final IExp fileName;
+    private final String id;
     private static IntType intType;
     private static StringType stringType;
 
-    public ReadFile(IExp exp, String varName) {
-        this.exp = exp;
-        this.varName = varName;
+    public ReadFile(IExp fileName, String id) {
+        this.fileName = fileName;
+        this.id = id;
         stringType = new StringType();
         intType = new IntType();
     }
@@ -34,20 +34,16 @@ public class ReadFile implements Statement {
     public ProgramState execute(ProgramState state) throws StmtException {
         ISymTable<String, IValue> symTable = state.getSymTable();
 
-        if (!symTable.contains(this.varName)) {
+        if (!symTable.contains(this.id)) {
             throw new StmtException("Variable doesn't exist");
         }
 
         try {
-            if (!symTable.lookup(this.varName).getType().equals(intType)) {
+            if (!symTable.lookup(this.id).getType().equals(intType)) {
                 throw new StmtException("Variable isn't type int");
             }
 
-            IValue eval = this.exp.eval(symTable, state.getHeap());
-
-            if (!eval.getType().equals(stringType)) {
-                throw new StmtException("Expression result isn't type string");
-            }
+            IValue eval = this.fileName.eval(symTable, state.getHeap());
 
             try {
                 BufferedReader br = state.getFileTable().lookup((StringValue) eval);
@@ -58,7 +54,7 @@ public class ReadFile implements Statement {
                 } else {
                     newValue = new IntValue(Integer.parseInt(readVal));
                 }
-                symTable.insert(this.varName, newValue);
+                symTable.insert(this.id, newValue);
                 return null;
             } catch (IOException e) {
                 throw new StmtException(e.getMessage());
@@ -70,13 +66,13 @@ public class ReadFile implements Statement {
 
     @Override
     public Statement deepCopy() {
-        return new ReadFile(this.exp.deepCopy(), this.varName);
+        return new ReadFile(this.fileName.deepCopy(), this.id);
     }
 
     @Override
     public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
         try {
-            if (this.exp.typeCheck(typeEnv).equals(this.stringType)) {
+            if (this.fileName.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;
             }
             throw new StmtException("Expression is not a String.\n");
@@ -87,6 +83,6 @@ public class ReadFile implements Statement {
 
     @Override
     public String toString() {
-        return "Read from file: " + this.exp;
+        return "Read from file: " + this.fileName;
     }
 }

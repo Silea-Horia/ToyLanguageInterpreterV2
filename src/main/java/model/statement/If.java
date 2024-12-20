@@ -33,14 +33,16 @@ public class If implements Statement {
     public ProgramState execute(ProgramState state) throws StmtException {
         IExeStack<Statement> stack = state.getExeStack();
         IValue condition;
+
         try {
             condition = this.expression.eval(state.getSymTable(), state.getHeap());
         } catch (ExpressionException e) {
             throw new StmtException(e.getMessage());
         }
-        if (!condition.getType().equals(boolType)) throw new StmtException("Conditional expression is not a boolean!|n");
+
         if (((BoolValue) condition).getValue()) stack.push(this.thenBody);
         else stack.push(this.elseBody);
+
         return null;
     }
     @Override

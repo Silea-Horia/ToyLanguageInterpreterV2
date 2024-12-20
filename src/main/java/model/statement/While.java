@@ -26,10 +26,6 @@ public class While implements Statement {
         try {
             IValue eval = this.condition.eval(state.getSymTable(), state.getHeap());
 
-            if (!eval.getType().equals(boolType)) {
-                throw new StmtException("Condition is not a bool type\n");
-            }
-
             if (((BoolValue)eval).getValue()) {
                 state.getExeStack().push(this);
                 state.getExeStack().push(this.command);
