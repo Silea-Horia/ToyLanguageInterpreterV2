@@ -15,30 +15,30 @@
     </padding>
    <children>
       <TextField fx:id="noPrograms" editable="false" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="138.0" prefWidth="800.0">
          <children>
             <ListView fx:id="executionStack" prefHeight="100.0" prefWidth="600.0" />
             <ListView fx:id="out" prefHeight="42.0" prefWidth="300.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+      <HBox alignment="CENTER" prefHeight="291.0" prefWidth="800.0">
          <children>
             <TableView fx:id="symbolTable" prefHeight="100.0" prefWidth="250.0">
               <columns>
-                <TableColumn prefWidth="83.0" text="ID" />
-                <TableColumn minWidth="3.0" prefWidth="200.0" text="Value" />
+                <TableColumn fx:id="stackID" prefWidth="83.0" text="ID" />
+                <TableColumn fx:id="stackValue" minWidth="3.0" prefWidth="200.0" text="Value" />
               </columns>
             </TableView>
-            <TableView fx:id="heap" prefHeight="100.0" prefWidth="410.0">
+            <TableView fx:id="heap" prefHeight="127.0" prefWidth="368.0">
               <columns>
-                <TableColumn fx:id="value" prefWidth="152.0" text="Value" />
-                <TableColumn fx:id="address" prefWidth="200.0" text="Address" />
+                <TableColumn fx:id="heapValue" prefWidth="152.0" text="Value" />
+                <TableColumn fx:id="heapAddress" prefWidth="200.0" text="Address" />
               </columns>
             </TableView>
             <ListView fx:id="fileTable" prefHeight="100.0" prefWidth="154.0" />
+            <ListView fx:id="programStates" onMouseClicked="#updateProgramInfo" onMousePressed="#updateProgramInfo" prefHeight="100.0" prefWidth="155.0" />
          </children>
       </HBox>
-      <ListView fx:id="programStates" onMouseClicked="#updateProgramInfo" onMousePressed="#updateProgramInfo" prefHeight="95.0" prefWidth="800.0" />
       <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />
    </children>
 </VBox>

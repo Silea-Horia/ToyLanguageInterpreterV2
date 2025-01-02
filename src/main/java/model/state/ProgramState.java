@@ -18,7 +18,7 @@ public class ProgramState {
     private final IFileTable<StringValue, BufferedReader> fileTable;
     private final IHeap heap;
     private Integer id;
-    private static int lastId = 0;
+    private static int lastId = 0;  // TODO reset on new program
 
     public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap) {
         this.exeStack = exeStack;

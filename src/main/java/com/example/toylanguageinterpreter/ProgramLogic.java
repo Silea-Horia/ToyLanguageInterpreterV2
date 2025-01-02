@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Pair;
-import model.adt.IExeStack;
 import model.adt.IHeap;
 import model.exception.DictionaryException;
 import model.exception.RepoException;
@@ -38,15 +37,19 @@ public class ProgramLogic {
     @FXML
     private TableView<Pair<Integer, String>> heap;
     @FXML
-    private TableColumn<Pair<Integer, String>, Integer> address;
+    private TableColumn<Pair<Integer, String>, Integer> heapAddress;
     @FXML
-    private TableColumn<Pair<Integer, String>, String> value;
+    private TableColumn<Pair<Integer, String>, String> heapValue;
 
     @FXML
     private ListView<IValue> out;
 
     @FXML
     private TableView<Pair<String, IValue>> symbolTable;
+    @FXML
+    private TableColumn<Pair<String, IValue>, String> stackID;
+    @FXML
+    private TableColumn<Pair<String, IValue>, String> stackValue;
 
     @FXML
     private ListView<StringValue> fileTable;
@@ -64,6 +67,7 @@ public class ProgramLogic {
 
     @FXML
     public void initialize() {
+        // exe stack
         this.executionStack.setCellFactory(param -> new ListCell<Statement>() {
             @Override
             protected void updateItem(Statement item, boolean empty) {
@@ -77,9 +81,14 @@ public class ProgramLogic {
             }
         });
 
+        // sym table
+        this.stackID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getKey()));
+        this.stackValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().toString()));
 
-        this.address.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
-        this.value.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
+
+        // heap
+        this.heapAddress.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.heapValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
 
         this.out.setCellFactory(param -> new ListCell<IValue>() {
             @Override
@@ -252,11 +261,14 @@ public class ProgramLogic {
     protected void updateProgramInfo() {
         if (!this.repository.getPrgList().isEmpty()) {
             this.updateExecutionStack();
+            this.updateSymbolTable();
         }
     }
 
     private void updateSymbolTable() {
+        ObservableList<Pair<String, IValue>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getSymTable().getContent().entrySet().stream().map(p -> new Pair<String, IValue>(p.getKey(), p.getValue())).collect(Collectors.toList()));
 
+        this.symbolTable.setItems(data);
     }
 
     private void updateExecutionStack() {
