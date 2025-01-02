@@ -14,11 +14,11 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <TextField fx:id="noPrograms" />
+      <TextField fx:id="noPrograms" editable="false" />
       <TableView fx:id="heap" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Address" />
-          <TableColumn prefWidth="75.0" text="Value" />
+          <TableColumn fx:id="address" prefWidth="368.0" text="Address" />
+          <TableColumn fx:id="value" prefWidth="431.0" text="Value" />
         </columns>
       </TableView>
       <ListView fx:id="out" prefHeight="42.0" prefWidth="200.0" />

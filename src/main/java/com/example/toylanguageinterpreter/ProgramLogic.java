@@ -1,8 +1,12 @@
 package com.example.toylanguageinterpreter;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Pair;
 import model.adt.IHeap;
 import model.exception.DictionaryException;
 import model.exception.RepoException;
@@ -26,7 +30,18 @@ public class ProgramLogic {
     private TextField noPrograms;
 
     @FXML
+    private TableView<Pair<Integer, String>> heap;
+    @FXML
+    private TableColumn<Pair<Integer, String>, Integer> address;
+    @FXML
+    private TableColumn<Pair<Integer, String>, String> value;
+
+    @FXML
+    private ListView<IValue> out;
+
+    @FXML
     private Button oneStep;
+
 
     public ProgramLogic(Repository repository) {
         this.repository = repository;
@@ -34,11 +49,21 @@ public class ProgramLogic {
 
     @FXML
     public void initialize() {
-        this.updateNoPrograms();
-    }
+        this.out.setCellFactory(param -> new ListCell<IValue>() {
+            @Override
+            protected void updateItem(IValue item, boolean empty) {
+                super.updateItem(item, empty);
 
-    private void updateNoPrograms() {
-        this.noPrograms.setText(Integer.toString(this.repository.getNoPrograms()));
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+        this.address.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.value.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
+        this.updateWindow();
     }
 
     @FXML
@@ -55,15 +80,15 @@ public class ProgramLogic {
 
         this.logAll(prgStateList);
 
+        this.updateWindow();
+
         prgStateList = this.removeCompletedPrg(this.repository.getPrgList());
 
         this.executor.shutdownNow();
 
         this.repository.setPrgList(prgStateList);
 
-        if (prgStateList.isEmpty()) {
-            this.oneStep.setDisable(true);
-        }
+        this.updateWindow();
     }
 
     private List<ProgramState> removeCompletedPrg(List<ProgramState> prgStateList) {
@@ -145,4 +170,30 @@ public class ProgramLogic {
         return heap.entrySet().stream().filter(e->symTableAddr.contains(e.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
+    private void updateWindow() {
+        if (this.repository.getPrgList().isEmpty()) {
+            this.oneStep.setDisable(true);
+            return;
+        }
+
+        this.updateNoPrograms();
+
+        this.updateHeap();
+
+        this.updateOut();
+    }
+
+    private void updateNoPrograms() {
+        this.noPrograms.setText(Integer.toString(this.repository.getNoPrograms()));
+    }
+
+    private void updateHeap() {
+        ObservableList<Pair<Integer, String>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getHeap().getContent().entrySet().stream().map(p -> new Pair<Integer, String>(p.getKey(), p.getValue().toString())).collect(Collectors.toList()));
+
+        this.heap.setItems(data);
+    }
+
+    private void updateOut() {
+        this.out.setItems(FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getOut().getAll()));
+    }
 }

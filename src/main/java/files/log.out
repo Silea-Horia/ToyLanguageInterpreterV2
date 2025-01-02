@@ -55,3 +55,115 @@ Out:
 FileTable:
 Heap:
 
+ProgramState no. 1 is:
+ExeStack:
+int a;
+int b;
+a=2+3*5;
+b=a+1;
+print(b);
+SymTable:
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+int b;
+a=2+3*5;
+b=a+1;
+print(b);
+SymTable:
+a->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+int b;
+a=2+3*5;
+b=a+1;
+print(b);
+SymTable:
+a->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+a=2+3*5;
+b=a+1;
+print(b);
+SymTable:
+a->0
+b->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+a=2+3*5;
+b=a+1;
+print(b);
+SymTable:
+a->0
+b->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+b=a+1;
+print(b);
+SymTable:
+a->17
+b->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+b=a+1;
+print(b);
+SymTable:
+a->17
+b->0
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+print(b);
+SymTable:
+a->17
+b->18
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+print(b);
+SymTable:
+a->17
+b->18
+Out:
+FileTable:
+Heap:
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+a->17
+b->18
+Out:
+18
+FileTable:
+Heap:
+
