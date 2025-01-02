@@ -1,8 +1,14 @@
 ProgramState no. 0 is:
 ExeStack:
-int v;
-v=2;
-print(v);
+string varf;
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
 Out:
 FileTable:
@@ -10,160 +16,242 @@ Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=2;
-print(v);
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->0
+varf->
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=2;
-print(v);
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->0
+varf->
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->2
+varf->src/main/java/files/test.in
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->2
+varf->src/main/java/files/test.in
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->2
-Out:
-2
-FileTable:
-Heap:
-
-ProgramState no. 1 is:
-ExeStack:
-int a;
-int b;
-a=2+3*5;
-b=a+1;
-print(b);
-SymTable:
+varf->src/main/java/files/test.in
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-int b;
-a=2+3*5;
-b=a+1;
-print(b);
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->0
+varf->src/main/java/files/test.in
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-int b;
-a=2+3*5;
-b=a+1;
-print(b);
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->0
+varf->src/main/java/files/test.in
+varc->0
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-a=2+3*5;
-b=a+1;
-print(b);
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->0
-b->0
+varf->src/main/java/files/test.in
+varc->0
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-a=2+3*5;
-b=a+1;
-print(b);
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->0
-b->0
+varf->src/main/java/files/test.in
+varc->10
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-b=a+1;
-print(b);
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->17
-b->0
+varf->src/main/java/files/test.in
+varc->10
 Out:
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-b=a+1;
-print(b);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->17
-b->0
+varf->src/main/java/files/test.in
+varc->10
 Out:
+10
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-print(b);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->17
-b->18
+varf->src/main/java/files/test.in
+varc->10
 Out:
+10
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-print(b);
+print(varc);
+Close file: varf;
 SymTable:
-a->17
-b->18
+varf->src/main/java/files/test.in
+varc->20
 Out:
+10
 FileTable:
+src/main/java/files/test.in
 Heap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
+ExeStack:
+print(varc);
+Close file: varf;
+SymTable:
+varf->src/main/java/files/test.in
+varc->20
+Out:
+10
+FileTable:
+src/main/java/files/test.in
+Heap:
+
+ProgramState no. 0 is:
+ExeStack:
+Close file: varf;
+SymTable:
+varf->src/main/java/files/test.in
+varc->20
+Out:
+10
+20
+FileTable:
+src/main/java/files/test.in
+Heap:
+
+ProgramState no. 0 is:
+ExeStack:
+Close file: varf;
+SymTable:
+varf->src/main/java/files/test.in
+varc->20
+Out:
+10
+20
+FileTable:
+src/main/java/files/test.in
+Heap:
+
+ProgramState no. 0 is:
 ExeStack:
 SymTable:
-a->17
-b->18
+varf->src/main/java/files/test.in
+varc->20
 Out:
-18
+10
+20
 FileTable:
 Heap:
 

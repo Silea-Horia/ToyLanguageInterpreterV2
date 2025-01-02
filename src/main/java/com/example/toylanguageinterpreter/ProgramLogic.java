@@ -13,6 +13,7 @@ import model.exception.RepoException;
 import model.state.ProgramState;
 import model.value.IValue;
 import model.value.RefValue;
+import model.value.StringValue;
 import repository.Repository;
 
 import java.util.*;
@@ -40,6 +41,9 @@ public class ProgramLogic {
     private ListView<IValue> out;
 
     @FXML
+    private ListView<StringValue> fileTable;
+
+    @FXML
     private Button oneStep;
 
 
@@ -49,6 +53,9 @@ public class ProgramLogic {
 
     @FXML
     public void initialize() {
+        this.address.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.value.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
+
         this.out.setCellFactory(param -> new ListCell<IValue>() {
             @Override
             protected void updateItem(IValue item, boolean empty) {
@@ -61,8 +68,20 @@ public class ProgramLogic {
                 }
             }
         });
-        this.address.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
-        this.value.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
+
+        this.fileTable.setCellFactory(param -> new ListCell<StringValue>() {
+            @Override
+            protected void updateItem(StringValue item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getValue());
+                }
+            }
+        });
+
         this.updateWindow();
     }
 
@@ -181,6 +200,8 @@ public class ProgramLogic {
         this.updateHeap();
 
         this.updateOut();
+
+        this.updateFileTable();
     }
 
     private void updateNoPrograms() {
@@ -195,5 +216,9 @@ public class ProgramLogic {
 
     private void updateOut() {
         this.out.setItems(FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getOut().getAll()));
+    }
+
+    private void updateFileTable() {
+        this.fileTable.setItems(FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getFileTable().keys()));
     }
 }
