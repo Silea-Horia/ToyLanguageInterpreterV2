@@ -7,10 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Pair;
+import model.adt.IExeStack;
 import model.adt.IHeap;
 import model.exception.DictionaryException;
 import model.exception.RepoException;
 import model.state.ProgramState;
+import model.statement.Statement;
 import model.value.IValue;
 import model.value.RefValue;
 import model.value.StringValue;
@@ -31,6 +33,9 @@ public class ProgramLogic {
     private TextField noPrograms;
 
     @FXML
+    private ListView<Statement> executionStack;
+
+    @FXML
     private TableView<Pair<Integer, String>> heap;
     @FXML
     private TableColumn<Pair<Integer, String>, Integer> address;
@@ -39,6 +44,9 @@ public class ProgramLogic {
 
     @FXML
     private ListView<IValue> out;
+
+    @FXML
+    private TableView<Pair<String, IValue>> symbolTable;
 
     @FXML
     private ListView<StringValue> fileTable;
@@ -56,6 +64,20 @@ public class ProgramLogic {
 
     @FXML
     public void initialize() {
+        this.executionStack.setCellFactory(param -> new ListCell<Statement>() {
+            @Override
+            protected void updateItem(Statement item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null){
+                    setText(null);
+                } else {
+                    setText(item.toString());
+                }
+            }
+        });
+
+
         this.address.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
         this.value.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
 
@@ -140,7 +162,7 @@ public class ProgramLogic {
         });
     }
 
-    public void oneStepForAll(List<ProgramState> programStateList) {
+    private void oneStepForAll(List<ProgramState> programStateList) {
         List<Callable<ProgramState>> callList = programStateList.stream().map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep)).toList();
 
         try {
@@ -205,24 +227,41 @@ public class ProgramLogic {
     }
 
     private void updateWindow() {
+        this.updateNoPrograms();
+        this.updateProgramStates();
+
         if (this.repository.getPrgList().isEmpty()) {
             this.oneStep.setDisable(true);
             return;
         }
 
-        this.updateNoPrograms();
+        this.updateProgramInfo();
 
         this.updateHeap();
 
         this.updateOut();
 
         this.updateFileTable();
-
-        this.updateProgramStates();
     }
 
     private void updateNoPrograms() {
         this.noPrograms.setText(Integer.toString(this.repository.getNoPrograms()));
+    }
+
+    @FXML
+    protected void updateProgramInfo() {
+        if (!this.repository.getPrgList().isEmpty()) {
+            this.updateExecutionStack();
+        }
+    }
+
+    private void updateSymbolTable() {
+
+    }
+
+    private void updateExecutionStack() {
+        if (!this.programStates.getSelectionModel().getSelectedIndices().isEmpty())
+            this.executionStack.setItems(FXCollections.observableArrayList(this.repository.getPrgList().get(this.programStates.getSelectionModel().getSelectedIndices().getFirst()).getExeStack().getContent()));
     }
 
     private void updateHeap() {

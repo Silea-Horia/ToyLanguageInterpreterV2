@@ -38,7 +38,7 @@
             <ListView fx:id="fileTable" prefHeight="100.0" prefWidth="154.0" />
          </children>
       </HBox>
-      <ListView fx:id="programStates" prefHeight="95.0" prefWidth="800.0" />
+      <ListView fx:id="programStates" onMouseClicked="#updateProgramInfo" onMousePressed="#updateProgramInfo" prefHeight="95.0" prefWidth="800.0" />
       <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />
    </children>
 </VBox>

@@ -3,7 +3,9 @@ package model.adt;
 import model.exception.StackException;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class ExeStack<T> implements IExeStack<T> {
     private Deque<T> stack;
@@ -36,5 +38,10 @@ public class ExeStack<T> implements IExeStack<T> {
         StringBuilder str = new StringBuilder();
         this.stack.forEach((t) -> str.append(t).append(";\n"));
         return "ExeStack:\n" + str;
+    }
+
+    @Override
+    public List<T> getContent() {
+        return new ArrayList<>(this.stack);
     }
 }
