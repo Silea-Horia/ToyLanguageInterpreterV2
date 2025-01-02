@@ -44,6 +44,9 @@ public class ProgramLogic {
     private ListView<StringValue> fileTable;
 
     @FXML
+    private ListView<ProgramState> programStates;
+
+    @FXML
     private Button oneStep;
 
 
@@ -78,6 +81,18 @@ public class ProgramLogic {
                     setText(null);
                 } else {
                     setText(item.getValue());
+                }
+            }
+        });
+
+        this.programStates.setCellFactory(param -> new ListCell<ProgramState>() {
+            @Override
+            protected void updateItem(ProgramState item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getId().toString());
                 }
             }
         });
@@ -202,6 +217,8 @@ public class ProgramLogic {
         this.updateOut();
 
         this.updateFileTable();
+
+        this.updateProgramStates();
     }
 
     private void updateNoPrograms() {
@@ -220,5 +237,9 @@ public class ProgramLogic {
 
     private void updateFileTable() {
         this.fileTable.setItems(FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getFileTable().keys()));
+    }
+
+    private void updateProgramStates() {
+        this.programStates.setItems(FXCollections.observableArrayList(this.repository.getPrgList()));
     }
 }

@@ -1,14 +1,12 @@
 ProgramState no. 0 is:
 ExeStack:
-string varf;
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Ref (int) v;
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
 Out:
 FileTable:
@@ -16,242 +14,285 @@ Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->
+v->(0, int)
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+new(v, 20);
+Ref (Ref (int)) a;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->
+v->(0, int)
 Out:
 FileTable:
 Heap:
 
 ProgramState no. 0 is:
 ExeStack:
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Ref (Ref (int)) a;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
+v->(1, int)
 Out:
 FileTable:
 Heap:
+1->20
 
 ProgramState no. 0 is:
 ExeStack:
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Ref (Ref (int)) a;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
+v->(1, int)
 Out:
 FileTable:
 Heap:
+1->20
 
 ProgramState no. 0 is:
 ExeStack:
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
+a->(0, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
 
 ProgramState no. 0 is:
 ExeStack:
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+new(a, v);
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
+a->(0, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
 
 ProgramState no. 0 is:
 ExeStack:
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
-varc->0
+a->(2, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
 ProgramState no. 0 is:
 ExeStack:
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
-varc->0
+a->(2, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
 ProgramState no. 0 is:
 ExeStack:
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
-varc->10
+a->(2, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
-ProgramState no. 0 is:
+ProgramState no. 1 is:
 ExeStack:
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
+Ref (Ref (int)) b;
+new(v, 30);
+new(b, v);
 SymTable:
-varf->src/main/java/files/test.in
-varc->10
+a->(2, Ref (int))
+v->(1, int)
 Out:
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
 ProgramState no. 0 is:
 ExeStack:
-Read from file: varf;
-print(varc);
-Close file: varf;
+print(rH(v));
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
-varc->10
+a->(2, Ref (int))
+v->(1, int)
 Out:
-10
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
-ProgramState no. 0 is:
+ProgramState no. 1 is:
 ExeStack:
-Read from file: varf;
-print(varc);
-Close file: varf;
+Ref (Ref (int)) b;
+new(v, 30);
+new(b, v);
 SymTable:
-varf->src/main/java/files/test.in
-varc->10
+a->(2, Ref (int))
+v->(1, int)
 Out:
-10
 FileTable:
-src/main/java/files/test.in
 Heap:
+1->20
+2->(1, int)
 
 ProgramState no. 0 is:
 ExeStack:
-print(varc);
-Close file: varf;
+print(rH(rH(a)));
 SymTable:
-varf->src/main/java/files/test.in
-varc->20
+a->(2, Ref (int))
+v->(1, int)
 Out:
-10
-FileTable:
-src/main/java/files/test.in
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-FileTable:
-src/main/java/files/test.in
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-20
-FileTable:
-src/main/java/files/test.in
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-20
-FileTable:
-src/main/java/files/test.in
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
 20
 FileTable:
 Heap:
+1->20
+2->(1, int)
+
+ProgramState no. 1 is:
+ExeStack:
+new(v, 30);
+new(b, v);
+SymTable:
+a->(2, Ref (int))
+b->(0, Ref (int))
+v->(1, int)
+Out:
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(rH(a)));
+SymTable:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+
+ProgramState no. 1 is:
+ExeStack:
+new(v, 30);
+new(b, v);
+SymTable:
+a->(2, Ref (int))
+b->(0, Ref (int))
+v->(1, int)
+Out:
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+a->(2, Ref (int))
+v->(1, int)
+Out:
+20
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+3->30
+
+ProgramState no. 1 is:
+ExeStack:
+new(b, v);
+SymTable:
+a->(2, Ref (int))
+b->(0, Ref (int))
+v->(3, int)
+Out:
+20
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+3->30
+
+ProgramState no. 1 is:
+ExeStack:
+new(b, v);
+SymTable:
+a->(2, Ref (int))
+b->(0, Ref (int))
+v->(3, int)
+Out:
+20
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+3->30
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+a->(2, Ref (int))
+b->(4, Ref (int))
+v->(3, int)
+Out:
+20
+20
+FileTable:
+Heap:
+1->20
+2->(1, int)
+3->30
+4->(3, int)
 

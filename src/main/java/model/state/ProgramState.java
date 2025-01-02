@@ -12,22 +12,19 @@ import model.value.StringValue;
 import java.io.BufferedReader;
 
 public class ProgramState {
-    private IExeStack<Statement> exeStack;
-    private ISymTable<String, IValue> symTable;
-    private IOutList<IValue> out;
-    private Statement originalProgram;
-    private IFileTable<StringValue, BufferedReader> fileTable;
-    private IHeap heap;
-    private int id;
+    private final IExeStack<Statement> exeStack;
+    private final ISymTable<String, IValue> symTable;
+    private final IOutList<IValue> out;
+    private final IFileTable<StringValue, BufferedReader> fileTable;
+    private final IHeap heap;
+    private Integer id;
     private static int lastId = 0;
 
     public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
-        this.originalProgram = originalProgram.deepCopy();
         this.heap = heap;
-        //this.exeStack.push(originalProgram);
         this.convertToStack(originalProgram);
         this.fileTable = fileTable;
         this.setId();
@@ -64,9 +61,7 @@ public class ProgramState {
 
     public IOutList<IValue> getOut() { return this.out; }
 
-    public Statement getOriginalProgram() {
-        return this.originalProgram;
-    }
+    public Integer getId() {return this.id;}
 
     public IHeap getHeap() { return this.heap; }
 
