@@ -5,7 +5,7 @@ import model.exception.*;
 import model.state.ProgramState;
 import model.value.IValue;
 import model.value.RefValue;
-import repository.IRepository;
+import repository.Repository;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -15,11 +15,11 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class Controller {
-    private IRepository repository;
+    private Repository repository;
     private boolean displayFlag;
     private ExecutorService executor;
 
-    public Controller(IRepository repository) {
+    public Controller(Repository repository) {
         this.repository = repository;
         this.displayFlag = true;
     }
@@ -32,9 +32,12 @@ public class Controller {
         return this.displayFlag;
     }
 
+    public int getNoPrograms() { return this.repository.getNoPrograms(); }
+
     public void generateInitialState(int option) throws ControllerException {
         try {
             this.repository.setState(option);
+            this.logAll(this.repository.getPrgList());
         } catch (RepoException e) {
             throw new ControllerException(e.getMessage());
         }
@@ -61,17 +64,8 @@ public class Controller {
         while (!prgStateList.isEmpty()) {
 
             this.oneStepForAll(prgStateList);
-//            prgStateList.forEach( prgState ->
-//                    prgState.getHeap().setContent(
-//                            safeGarbageCollector(getAddrFromSymTable(prgState.getSymTable().getContent().values(),
-//                                    prgState.getHeap()), prgState.getHeap().getContent())));
 
-            ArrayList<Integer> addresses = new ArrayList<>();
-            prgStateList.stream().map(prgState -> getAddrFromSymTable(prgState.getSymTable().getContent().values(),
-                    prgState.getHeap())).forEach(addresses::addAll);
-            //System.out.println(addresses);
-
-            prgStateList.forEach(prgState -> prgState.getHeap().setContent(safeGarbageCollector(addresses, prgState.getHeap().getContent())));
+            garbageCollectAll(prgStateList);
 
             this.logAll(prgStateList);
 
@@ -81,6 +75,33 @@ public class Controller {
         this.executor.shutdownNow();
 
         this.repository.setPrgList(prgStateList);
+    }
+
+    public void oneStep() {
+        this.executor = Executors.newFixedThreadPool(2);
+
+        List<ProgramState> prgStateList = this.removeCompletedPrg(this.repository.getPrgList());
+
+        this.oneStepForAll(prgStateList);
+
+        this.garbageCollectAll(prgStateList);
+
+        this.logAll(prgStateList);
+
+        prgStateList = this.removeCompletedPrg(this.repository.getPrgList());
+
+        this.executor.shutdownNow();
+
+        this.repository.setPrgList(prgStateList);
+    }
+
+    private void garbageCollectAll(List<ProgramState> programStateList) {
+        ArrayList<Integer> addresses = new ArrayList<>();
+        programStateList.stream().map(prgState -> getAddrFromSymTable(prgState.getSymTable().getContent().values(),
+                prgState.getHeap())).forEach(addresses::addAll);
+
+        programStateList.forEach(prgState -> prgState.getHeap().setContent(safeGarbageCollector(addresses, prgState.getHeap().getContent())));
+
     }
 
     private Map<Integer, IValue> safeGarbageCollector(List<Integer> symTableAddr, Map<Integer, IValue> heap) {

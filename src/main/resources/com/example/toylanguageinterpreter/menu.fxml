@@ -9,7 +9,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" text="Select a program" />
+    <Label text="Select a program" />
    <ListView fx:id="programs" prefHeight="200.0" prefWidth="200.0" />
     <Button onAction="#onRunButtonClick" text="Run" />
 </VBox>

@@ -9,23 +9,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.exception.ControllerException;
+import model.exception.RepoException;
 import model.statement.Statement;
-import repository.IRepository;
 import repository.Repository;
+import repository.MemoryRepository;
 
 import java.io.IOException;
 
 public class MenuLogic {
-    private IRepository repository;
-    private Controller controller;
+    private Repository repository;
 
     @FXML
     private ListView<Statement> programs;
 
     @FXML
     public void initialize() {
-        this.repository = new Repository("src/main/java/files/log.out");
-        this.controller = new Controller(this.repository);
+        this.repository = new MemoryRepository("src/main/java/files/log.out");
         this.programs.setItems(FXCollections.observableArrayList(this.repository.getGeneratedStatements()));
     }
 
@@ -34,17 +33,24 @@ public class MenuLogic {
         try {
             ObservableList<Integer> indices = this.programs.getSelectionModel().getSelectedIndices();
 
-            this.controller.generateInitialState(indices.getFirst()); //TODO HANDLE NO INDEX
-            this.controller.allStep();
+            if (indices.isEmpty()) {
+                // TODO error
+                System.exit(1);
+            }
+
+            this.repository.setState(indices.getFirst());
+
             this.createProgramWindow();
-        } catch (ControllerException | IOException e) {
+
+        } catch (RepoException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void createProgramWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Interpreter.class.getResource("program.fxml"));
-        fxmlLoader.setController(this.controller);
+        ProgramLogic logic = new ProgramLogic(this.repository);
+        fxmlLoader.setController(logic);
 
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 

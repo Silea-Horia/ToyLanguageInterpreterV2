@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
 <!--
 
             fx:controller="com.example.toylanguageinterpreter.ProgramLogic"
 -->
+
+<VBox fx:id="mainLayout" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <TextField fx:id="noPrograms" />
+      <TableView fx:id="heap" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Address" />
+          <TableColumn prefWidth="75.0" text="Value" />
+        </columns>
+      </TableView>
+      <ListView fx:id="out" prefHeight="42.0" prefWidth="200.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0">
+         <children>
+            <ListView fx:id="fileTable" prefHeight="100.0" prefWidth="144.0" />
+            <TableView fx:id="symbolTable" prefHeight="100.0" prefWidth="345.0">
+              <columns>
+                <TableColumn prefWidth="83.0" text="ID" />
+                <TableColumn minWidth="3.0" prefWidth="261.0" text="Value" />
+              </columns>
+            </TableView>
+            <ListView fx:id="executionStack" prefHeight="100.0" prefWidth="312.0" />
+         </children>
+      </HBox>
+      <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />
+   </children>
+</VBox>
