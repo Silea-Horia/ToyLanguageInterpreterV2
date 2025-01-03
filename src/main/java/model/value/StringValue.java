@@ -5,7 +5,7 @@ import model.type.StringType;
 
 import java.util.Objects;
 
-public class StringValue implements IValue {
+public class StringValue implements Value {
     private final String value;
 
     public StringValue(String value) {

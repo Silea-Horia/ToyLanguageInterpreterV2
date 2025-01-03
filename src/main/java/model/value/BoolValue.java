@@ -5,7 +5,7 @@ import model.type.Type;
 
 import java.util.Objects;
 
-public class BoolValue implements IValue{
+public class BoolValue implements Value {
     private final boolean value;
 
     public BoolValue(boolean val) { this.value = val; }

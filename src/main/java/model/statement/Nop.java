@@ -1,6 +1,6 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.StmtException;
 import model.state.ProgramState;
 import model.type.Type;
@@ -23,7 +23,7 @@ public class Nop implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         return typeEnv;
     }
 }

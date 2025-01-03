@@ -1,11 +1,10 @@
 package model.statement;
 
-import model.adt.IDictionary;
-import model.adt.ISymTable;
+import model.adt.Dictionary;
 import model.exception.StmtException;
 import model.state.ProgramState;
 import model.type.Type;
-import model.value.IValue;
+import model.value.Value;
 
 public class VariableDeclaration implements Statement {
     private final Type type;
@@ -23,7 +22,7 @@ public class VariableDeclaration implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
-        ISymTable<String, IValue> symbols = state.getSymTable();
+        Dictionary<String, Value> symbols = state.getSymTable();
         if (symbols.contains(this.id)) throw new StmtException("Variable is already declared!\n");
         symbols.insert(this.id, this.type.getDefaultValue());
         return null;
@@ -35,7 +34,7 @@ public class VariableDeclaration implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         typeEnv.insert(this.id, this.type);
         return typeEnv;
     }

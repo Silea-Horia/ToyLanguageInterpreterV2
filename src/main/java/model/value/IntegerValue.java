@@ -5,10 +5,10 @@ import model.type.IntType;
 
 import java.util.Objects;
 
-public class IntValue implements IValue {
+public class IntegerValue implements Value {
     private final int value;
 
-    public IntValue(int val) { this.value = val; }
+    public IntegerValue(int val) { this.value = val; }
 
     public int getValue() { return value; }
 
@@ -20,6 +20,6 @@ public class IntValue implements IValue {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof IntValue && Objects.equals(this.value, ((IntValue) other).getValue());
+        return other instanceof IntegerValue && Objects.equals(this.value, ((IntegerValue) other).getValue());
     }
 }

@@ -1,7 +1,7 @@
 package model.type;
 
-import model.value.IValue;
-import model.value.RefValue;
+import model.value.Value;
+import model.value.ReferenceValue;
 
 public class RefType implements Type {
     private final Type inner;
@@ -21,7 +21,7 @@ public class RefType implements Type {
     }
 
     @Override
-    public IValue getDefaultValue() {
-        return new RefValue(0, this.inner);
+    public Value getDefaultValue() {
+        return new ReferenceValue(0, this.inner);
     }
 }

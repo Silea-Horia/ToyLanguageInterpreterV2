@@ -5,11 +5,11 @@ import model.type.RefType;
 
 import java.util.Objects;
 
-public class RefValue implements IValue {
+public class ReferenceValue implements Value {
     private final int address;
     private final Type locationType;
 
-    public RefValue(int address, Type locationType) {
+    public ReferenceValue(int address, Type locationType) {
         this.address = address;
         this.locationType = locationType;
     }
@@ -29,7 +29,7 @@ public class RefValue implements IValue {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof RefValue && Objects.equals(this.locationType, ((RefValue) other).locationType);
+        return other instanceof ReferenceValue && Objects.equals(this.locationType, ((ReferenceValue) other).locationType);
     }
 
     @Override

@@ -1,20 +1,19 @@
 package model.expression;
 
-import model.adt.IDictionary;
-import model.adt.IHeap;
-import model.adt.ISymTable;
+import model.adt.Dictionary;
+import model.adt.Heap;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.type.Type;
-import model.value.IValue;
+import model.value.Value;
 
-public class VarExp implements IExp {
+public class VariableExp implements Expression {
     private final String id;
 
-    public VarExp(String id) { this.id = id; }
+    public VariableExp(String id) { this.id = id; }
 
     @Override
-    public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException {
+    public Value eval(Dictionary<String, Value> tbl, Heap heap) throws ExpressionException {
         try {
             return tbl.lookup(this.id);
         } catch (DictionaryException ex) {
@@ -23,12 +22,12 @@ public class VarExp implements IExp {
     }
 
     @Override
-    public IExp deepCopy() {
-        return new VarExp(this.id);
+    public Expression deepCopy() {
+        return new VariableExp(this.id);
     }
 
     @Override
-    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
+    public Type typeCheck(Dictionary<String, Type> typeEnv) throws ExpressionException {
         try {
             return typeEnv.lookup(this.id);
         } catch (DictionaryException e) {

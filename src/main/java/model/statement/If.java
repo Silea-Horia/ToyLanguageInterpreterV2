@@ -1,23 +1,23 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.adt.IExeStack;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.BoolType;
 import model.type.Type;
 import model.value.BoolValue;
-import model.value.IValue;
+import model.value.Value;
 
 public class If implements Statement {
-    private final IExp expression;
+    private final Expression expression;
     private final Statement thenBody;
     private final Statement elseBody;
     private static BoolType boolType;
 
-    public If(IExp expression, Statement thenBody, Statement elseBody) {
+    public If(Expression expression, Statement thenBody, Statement elseBody) {
         this.expression = expression;
         this.thenBody = thenBody;
         this.elseBody = elseBody;
@@ -32,7 +32,7 @@ public class If implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         IExeStack<Statement> stack = state.getExeStack();
-        IValue condition;
+        Value condition;
 
         try {
             condition = this.expression.eval(state.getSymTable(), state.getHeap());
@@ -51,7 +51,7 @@ public class If implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.expression.typeCheck(typeEnv).equals(boolType)) {
                 this.thenBody.typeCheck(typeEnv.deepCopy());

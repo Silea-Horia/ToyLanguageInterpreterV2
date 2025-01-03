@@ -8,7 +8,7 @@ import java.util.Deque;
 import java.util.List;
 
 public class ExeStack<T> implements IExeStack<T> {
-    private Deque<T> stack;
+    private final Deque<T> stack;
 
     public ExeStack() { this.stack = new ArrayDeque<>(); }
 

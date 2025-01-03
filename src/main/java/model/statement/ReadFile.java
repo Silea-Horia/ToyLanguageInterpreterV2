@@ -1,29 +1,28 @@
 package model.statement;
 
-import model.adt.IDictionary;
-import model.adt.ISymTable;
+import model.adt.Dictionary;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
 import model.type.IntType;
 import model.type.StringType;
-import model.value.IValue;
-import model.value.IntValue;
+import model.value.Value;
+import model.value.IntegerValue;
 import model.value.StringValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ReadFile implements Statement {
-    private final IExp fileName;
+    private final Expression fileName;
     private final String id;
     private static IntType intType;
     private static StringType stringType;
 
-    public ReadFile(IExp fileName, String id) {
+    public ReadFile(Expression fileName, String id) {
         this.fileName = fileName;
         this.id = id;
         stringType = new StringType();
@@ -32,7 +31,7 @@ public class ReadFile implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
-        ISymTable<String, IValue> symTable = state.getSymTable();
+        Dictionary<String, Value> symTable = state.getSymTable();
 
         if (!symTable.contains(this.id)) {
             throw new StmtException("Variable doesn't exist");
@@ -43,18 +42,16 @@ public class ReadFile implements Statement {
                 throw new StmtException("Variable isn't type int");
             }
 
-            IValue eval = this.fileName.eval(symTable, state.getHeap());
+            Value eval = this.fileName.eval(symTable, state.getHeap());
 
             try {
-                String readVal;
-                try (BufferedReader br = state.getFileTable().lookup((StringValue) eval)) {
-                    readVal = br.readLine();
-                }
-                IntValue newValue;
+                BufferedReader br = state.getFileTable().lookup((StringValue) eval);
+                String readVal = br.readLine();
+                IntegerValue newValue;
                 if (readVal == null) {
-                    newValue = new IntValue(0);
+                    newValue = new IntegerValue(0);
                 } else {
-                    newValue = new IntValue(Integer.parseInt(readVal));
+                    newValue = new IntegerValue(Integer.parseInt(readVal));
                 }
                 symTable.insert(this.id, newValue);
                 return null;
@@ -72,7 +69,7 @@ public class ReadFile implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.fileName.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;

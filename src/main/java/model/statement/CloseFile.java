@@ -1,24 +1,24 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
 import model.type.StringType;
-import model.value.IValue;
+import model.value.Value;
 import model.value.StringValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 public class CloseFile implements Statement {
-    private final IExp expression;
+    private final Expression expression;
     private static StringType stringType;
 
-    public CloseFile(IExp expression) {
+    public CloseFile(Expression expression) {
         this.expression = expression;
         stringType = new StringType();
     }
@@ -26,7 +26,7 @@ public class CloseFile implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue eval = this.expression.eval(state.getSymTable(), state.getHeap());
+            Value eval = this.expression.eval(state.getSymTable(), state.getHeap());
 
             try (BufferedReader br = state.getFileTable().lookup((StringValue) eval)){
                 br.close();
@@ -44,7 +44,7 @@ public class CloseFile implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.expression.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;

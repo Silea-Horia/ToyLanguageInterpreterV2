@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class SymTable<K, V> implements Dictionary<K, V> {
-    private final Map<K, V> map;
+public class HashDictionary<K, V> implements Dictionary<K, V> {
+    private Map<K, V> map;
 
-    public SymTable() { this.map = new HashMap<>(); }
+    public HashDictionary() { this.map = new HashMap<>(); }
 
     @Override
     public void insert(K k, V v) {
@@ -45,7 +45,7 @@ public class SymTable<K, V> implements Dictionary<K, V> {
 
     @Override
     public Dictionary<K, V> deepCopy() {
-        SymTable<K, V> newTable = new SymTable<>();
+        HashDictionary<K, V> newTable = new HashDictionary<>();
         this.map.forEach(newTable::insert);
         return newTable;
     }
@@ -54,6 +54,6 @@ public class SymTable<K, V> implements Dictionary<K, V> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         this.map.forEach((k, v) -> str.append(k).append("->").append(v).append("\n"));
-        return "SymTable:\n" + str;
+        return "Dictionary:\n" + str;
     }
 }

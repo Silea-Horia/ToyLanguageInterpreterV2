@@ -1,20 +1,19 @@
 package model.statement;
 
-import model.adt.IDictionary;
-import model.adt.ISymTable;
+import model.adt.Dictionary;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
-import model.value.IValue;
+import model.value.Value;
 
 public class Assign implements Statement {
     private final String id;
-    private final IExp expression;
+    private final Expression expression;
 
-    public Assign(String id, IExp expression) {
+    public Assign(String id, Expression expression) {
         this.id = id;
         this.expression = expression;
     }
@@ -26,10 +25,10 @@ public class Assign implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
-        ISymTable<String, IValue> symbols = state.getSymTable();
+        Dictionary<String, Value> symbols = state.getSymTable();
 
         if (symbols.contains(this.id)) {
-            IValue value;
+            Value value;
             try {
                 value = this.expression.eval(symbols, state.getHeap());
             } catch (ExpressionException e) {
@@ -49,7 +48,7 @@ public class Assign implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (typeEnv.lookup(this.id).equals(this.expression.typeCheck(typeEnv))) {
                 return typeEnv;

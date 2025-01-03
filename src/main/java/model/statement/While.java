@@ -1,21 +1,21 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.BoolType;
 import model.type.Type;
 import model.value.BoolValue;
-import model.value.IValue;
+import model.value.Value;
 
 public class While implements Statement {
-    private final IExp condition;
+    private final Expression condition;
     private final Statement command;
     private static BoolType boolType;
 
-    public While(IExp condition, Statement command) {
+    public While(Expression condition, Statement command) {
         this.condition = condition;
         this.command = command;
         boolType = new BoolType();
@@ -24,7 +24,7 @@ public class While implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue eval = this.condition.eval(state.getSymTable(), state.getHeap());
+            Value eval = this.condition.eval(state.getSymTable(), state.getHeap());
 
             if (((BoolValue)eval).getValue()) {
                 state.getExeStack().push(this);
@@ -43,7 +43,7 @@ public class While implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.condition.typeCheck(typeEnv).equals(boolType)) {
                 this.command.typeCheck(typeEnv);

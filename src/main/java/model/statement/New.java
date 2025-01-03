@@ -1,21 +1,21 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
 import model.type.RefType;
-import model.value.IValue;
-import model.value.RefValue;
+import model.value.Value;
+import model.value.ReferenceValue;
 
 public class New implements Statement {
     private final String id;
-    private final IExp expression;
+    private final Expression expression;
 
-    public New(String id, IExp expression) {
+    public New(String id, Expression expression) {
         this.id = id;
         this.expression = expression;
     }
@@ -23,15 +23,15 @@ public class New implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue value = state.getSymTable().lookup(this.id);
+            Value value = state.getSymTable().lookup(this.id);
 
-            RefValue refValue = (RefValue) value;
+            ReferenceValue refValue = (ReferenceValue) value;
 
-            IValue res = this.expression.eval(state.getSymTable(), state.getHeap());
+            Value res = this.expression.eval(state.getSymTable(), state.getHeap());
 
             int address = state.getHeap().allocate(res);
 
-            state.getSymTable().insert(this.id, new RefValue(address, refValue.getLocationType()));
+            state.getSymTable().insert(this.id, new ReferenceValue(address, refValue.getLocationType()));
 
             return null;
         } catch (DictionaryException | ExpressionException e) {
@@ -46,7 +46,7 @@ public class New implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             Type varType = typeEnv.lookup(this.id);
             Type expType = this.expression.typeCheck(typeEnv);

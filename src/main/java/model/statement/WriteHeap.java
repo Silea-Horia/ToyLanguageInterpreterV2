@@ -1,21 +1,21 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
 import model.type.RefType;
-import model.value.IValue;
-import model.value.RefValue;
+import model.value.Value;
+import model.value.ReferenceValue;
 
 public class WriteHeap implements Statement {
     private final String id;
-    private final IExp expression;
+    private final Expression expression;
 
-    public WriteHeap(String id, IExp expression) {
+    public WriteHeap(String id, Expression expression) {
         this.id = id;
         this.expression = expression;
     }
@@ -23,17 +23,17 @@ public class WriteHeap implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue value = state.getSymTable().lookup(this.id);
+            Value value = state.getSymTable().lookup(this.id);
 
-            RefValue refValue = (RefValue) value;
+            ReferenceValue refValue = (ReferenceValue) value;
 
             Integer address = refValue.getAddress();
 
             if (!state.getHeap().contains(address)) {
-                throw new StmtException("Address is not in Heap\n");
+                throw new StmtException("Address is not in HashHeap\n");
             }
 
-            IValue res = this.expression.eval(state.getSymTable(), state.getHeap());
+            Value res = this.expression.eval(state.getSymTable(), state.getHeap());
 
             state.getHeap().set(address, res);
 
@@ -49,7 +49,7 @@ public class WriteHeap implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             Type expType = this.expression.typeCheck(typeEnv);
             Type varType = typeEnv.lookup(this.id);

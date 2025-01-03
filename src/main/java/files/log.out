@@ -1,911 +1,391 @@
 ProgramState no. 0 is:
 ExeStack:
+bool a;
 int v;
-v=2;
+a=true;
+if(a) thenBody(v=2) else(v=3);
 print(v);
 SymTable:
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=2;
+int v;
+a=true;
+if(a) thenBody(v=2) else(v=3);
 print(v);
 SymTable:
+a->false
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int v;
+a=true;
+if(a) thenBody(v=2) else(v=3);
+print(v);
+SymTable:
+a->false
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+a=true;
+if(a) thenBody(v=2) else(v=3);
+print(v);
+SymTable:
+a->false
 v->0
 Out:
 FileTable:
-Heap:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+a=true;
+if(a) thenBody(v=2) else(v=3);
+print(v);
+SymTable:
+a->false
+v->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+if(a) thenBody(v=2) else(v=3);
+print(v);
+SymTable:
+a->true
+v->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+if(a) thenBody(v=2) else(v=3);
+print(v);
+SymTable:
+a->true
+v->0
+Out:
+FileTable:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
 v=2;
 print(v);
 SymTable:
+a->true
 v->0
 Out:
 FileTable:
-Heap:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+v=2;
+print(v);
+SymTable:
+a->true
+v->0
+Out:
+FileTable:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
 print(v);
 SymTable:
+a->true
 v->2
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
 print(v);
 SymTable:
+a->true
 v->2
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
 SymTable:
+a->true
 v->2
 Out:
 2
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int v;
-Ref (int) a;
-v=10;
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+string varf;
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-Ref (int) a;
-v=10;
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->0
+varf->
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-Ref (int) a;
-v=10;
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+varf=src/main/java/files/test.in;
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-v->0
+varf->
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=10;
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(0, int)
-v->0
+varf->src/main/java/files/test.in
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=10;
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+Open file: varf;
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(0, int)
-v->0
+varf->src/main/java/files/test.in
 Out:
 FileTable:
-Heap:
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(0, int)
-v->10
+varf->src/main/java/files/test.in
 Out:
 FileTable:
-Heap:
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(a, 22);
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+int varc;
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(0, int)
-v->10
+varf->src/main/java/files/test.in
 Out:
 FileTable:
-Heap:
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->0
 Out:
 FileTable:
-Heap:
-1->22
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(wh(a, 30);v=32;print(v);print(rH(a)));
-print(v);
-print(rH(a));
+Read from file: varf;
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->0
 Out:
 FileTable:
-Heap:
-1->22
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
-print(rH(a));
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->10
 Out:
 FileTable:
-Heap:
-1->22
-
-ProgramState no. 1 is:
-ExeStack:
-wh(a, 30);
-v=32;
-print(v);
-print(rH(a));
-SymTable:
-a->(1, int)
-v->10
-Out:
-FileTable:
-Heap:
-1->22
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
-print(rH(a));
+print(varc);
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->10
 Out:
 FileTable:
-Heap:
-1->22
-
-ProgramState no. 1 is:
-ExeStack:
-wh(a, 30);
-v=32;
-print(v);
-print(rH(a));
-SymTable:
-a->(1, int)
-v->10
-Out:
-FileTable:
-Heap:
-1->22
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(rH(a));
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->10
 Out:
 10
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-v=32;
-print(v);
-print(rH(a));
+Read from file: varf;
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->10
 Out:
 10
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(rH(a));
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->20
 Out:
 10
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-v=32;
-print(v);
-print(rH(a));
+print(varc);
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->20
 Out:
 10
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
+Close file: varf;
 SymTable:
-a->(1, int)
-v->10
+varf->src/main/java/files/test.in
+varc->20
 Out:
 10
-30
+20
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-print(v);
-print(rH(a));
+Close file: varf;
 SymTable:
-a->(1, int)
-v->32
+varf->src/main/java/files/test.in
+varc->20
 Out:
 10
-30
+20
 FileTable:
-Heap:
-1->30
+src/main/java/files/test.in
+HashHeap:
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-print(v);
-print(rH(a));
 SymTable:
-a->(1, int)
-v->32
+varf->src/main/java/files/test.in
+varc->20
 Out:
 10
-30
-FileTable:
-Heap:
-1->30
-
-ProgramState no. 1 is:
-ExeStack:
-print(rH(a));
-SymTable:
-a->(1, int)
-v->32
-Out:
-10
-30
-32
-FileTable:
-Heap:
-1->30
-
-ProgramState no. 1 is:
-ExeStack:
-print(rH(a));
-SymTable:
-a->(1, int)
-v->32
-Out:
-10
-30
-32
-FileTable:
-Heap:
-1->30
-
-ProgramState no. 1 is:
-ExeStack:
-SymTable:
-a->(1, int)
-v->32
-Out:
-10
-30
-32
-30
-FileTable:
-Heap:
-1->30
-
-ProgramState no. 0 is:
-ExeStack:
-Ref (int) v;
-new(v, 20);
-Ref (Ref (int)) a;
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-new(v, 20);
-Ref (Ref (int)) a;
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-v->(0, int)
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-new(v, 20);
-Ref (Ref (int)) a;
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-v->(0, int)
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-Ref (Ref (int)) a;
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Ref (Ref (int)) a;
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(0, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-new(a, v);
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(0, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(Ref (Ref (int)) b;new(v, 30);new(b, v));
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 1 is:
-ExeStack:
-Ref (Ref (int)) b;
-new(v, 30);
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(v));
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 1 is:
-ExeStack:
-Ref (Ref (int)) b;
-new(v, 30);
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
 20
 FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 1 is:
-ExeStack:
-new(v, 30);
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-b->(0, Ref (int))
-v->(1, int)
-Out:
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(rH(a)));
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 1 is:
-ExeStack:
-new(v, 30);
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-b->(0, Ref (int))
-v->(1, int)
-Out:
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-
-ProgramState no. 0 is:
-ExeStack:
-SymTable:
-a->(2, Ref (int))
-v->(1, int)
-Out:
-20
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-3->30
-
-ProgramState no. 1 is:
-ExeStack:
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-b->(0, Ref (int))
-v->(3, int)
-Out:
-20
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-3->30
-
-ProgramState no. 1 is:
-ExeStack:
-new(b, v);
-SymTable:
-a->(2, Ref (int))
-b->(0, Ref (int))
-v->(3, int)
-Out:
-20
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-3->30
-
-ProgramState no. 1 is:
-ExeStack:
-SymTable:
-a->(2, Ref (int))
-b->(4, Ref (int))
-v->(3, int)
-Out:
-20
-20
-FileTable:
-Heap:
-1->20
-2->(1, int)
-3->30
-4->(3, int)
-
-ProgramState no. 0 is:
-ExeStack:
-int v;
-v=4;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=4;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=4;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->4
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->4
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->4
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->4
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->3
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->3
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->3
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->3
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->2
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->2
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->2
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->2
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->1
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->1
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->1
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=v-1;
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->1
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-While(v>0) v=v-1;
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(v);
-SymTable:
-v->0
-Out:
-FileTable:
-Heap:
-
-ProgramState no. 0 is:
-ExeStack:
-SymTable:
-v->0
-Out:
-0
-FileTable:
-Heap:
+HashHeap:
 

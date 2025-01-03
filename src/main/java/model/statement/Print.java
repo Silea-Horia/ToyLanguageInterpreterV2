@@ -1,24 +1,24 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.adt.IOutList;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
-import model.value.IValue;
+import model.value.Value;
 
 public class Print implements Statement {
-    private final IExp expression;
+    private final Expression expression;
 
-    public Print(IExp expression) {
+    public Print(Expression expression) {
         this.expression = expression;
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
-        IOutList<IValue> list = state.getOut();
+        IOutList<Value> list = state.getOut();
         try {
             list.add(this.expression.eval(state.getSymTable(), state.getHeap()));
         } catch (ExpressionException e) {
@@ -38,7 +38,7 @@ public class Print implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             this.expression.typeCheck(typeEnv);
         } catch (ExpressionException e) {

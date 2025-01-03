@@ -1,13 +1,13 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.exception.ExpressionException;
 import model.exception.StmtException;
-import model.expression.IExp;
+import model.expression.Expression;
 import model.state.ProgramState;
 import model.type.Type;
 import model.type.StringType;
-import model.value.IValue;
+import model.value.Value;
 import model.value.StringValue;
 
 import java.io.BufferedReader;
@@ -15,10 +15,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class OpenFile implements Statement {
-    private final IExp path;
+    private final Expression path;
     private static StringType stringType;
 
-    public OpenFile(IExp path) {
+    public OpenFile(Expression path) {
         this.path = path;
         stringType = new StringType();
     }
@@ -26,7 +26,7 @@ public class OpenFile implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws StmtException {
         try {
-            IValue result = this.path.eval(state.getSymTable(), state.getHeap());
+            Value result = this.path.eval(state.getSymTable(), state.getHeap());
 
             String filePath = ((StringValue) result).getValue();
 
@@ -54,7 +54,7 @@ public class OpenFile implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.path.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;

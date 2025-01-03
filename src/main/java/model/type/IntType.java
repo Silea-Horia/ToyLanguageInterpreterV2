@@ -1,7 +1,7 @@
 package model.type;
 
-import model.value.IValue;
-import model.value.IntValue;
+import model.value.Value;
+import model.value.IntegerValue;
 
 public class IntType implements Type {
     @Override
@@ -13,7 +13,7 @@ public class IntType implements Type {
     public String toString() { return "int"; }
 
     @Override
-    public IValue getDefaultValue() {
-        return new IntValue(0);
+    public Value getDefaultValue() {
+        return new IntegerValue(0);
     }
 }

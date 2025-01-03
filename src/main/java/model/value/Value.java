@@ -2,7 +2,7 @@ package model.value;
 
 import model.type.Type;
 
-public interface IValue {
+public interface Value {
     Type getType();
     boolean equals(Object other);
 }

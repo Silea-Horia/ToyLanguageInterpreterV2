@@ -6,20 +6,20 @@ import model.exception.StateException;
 import model.exception.StmtException;
 import model.statement.Composed;
 import model.statement.Statement;
-import model.value.IValue;
+import model.value.Value;
 import model.value.StringValue;
 
 import java.io.BufferedReader;
 
 public class ProgramState {
     private final IExeStack<Statement> exeStack;
-    private final ISymTable<String, IValue> symTable;
-    private final IOutList<IValue> out;
-    private final IFileTable<StringValue, BufferedReader> fileTable;
-    private final IHeap heap;
+    private final Dictionary<String, Value> symTable;
+    private final IOutList<Value> out;
+    private final Dictionary<StringValue, BufferedReader> fileTable;
+    private final Heap heap;
     private final Integer id;
 
-    public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap, int id) {
+    public ProgramState(IExeStack<Statement> exeStack, Dictionary<String, Value> symTable, IOutList<Value> out, Statement originalProgram, Dictionary<StringValue, BufferedReader> fileTable, Heap heap, int id) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
@@ -54,17 +54,17 @@ public class ProgramState {
 
     public IExeStack<Statement> getExeStack() { return this.exeStack; }
 
-    public IOutList<IValue> getOut() { return this.out; }
+    public IOutList<Value> getOut() { return this.out; }
 
     public Integer getId() {return this.id;}
 
-    public IHeap getHeap() { return this.heap; }
+    public Heap getHeap() { return this.heap; }
 
-    public ISymTable<String, IValue> getSymTable() {
+    public Dictionary<String, Value> getSymTable() {
         return this.symTable;
     }
 
-    public IFileTable<StringValue, BufferedReader> getFileTable() {
+    public Dictionary<StringValue, BufferedReader> getFileTable() {
         return this.fileTable;
     }
 

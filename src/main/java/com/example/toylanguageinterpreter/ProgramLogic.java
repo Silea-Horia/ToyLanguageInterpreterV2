@@ -7,13 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Pair;
-import model.adt.IHeap;
+import model.adt.Heap;
 import model.exception.DictionaryException;
 import model.exception.RepoException;
 import model.state.ProgramState;
 import model.statement.Statement;
-import model.value.IValue;
-import model.value.RefValue;
+import model.value.Value;
+import model.value.ReferenceValue;
 import model.value.StringValue;
 import repository.Repository;
 
@@ -42,14 +42,14 @@ public class ProgramLogic {
     private TableColumn<Pair<Integer, String>, String> heapValue;
 
     @FXML
-    private ListView<IValue> out;
+    private ListView<Value> out;
 
     @FXML
-    private TableView<Pair<String, IValue>> symbolTable;
+    private TableView<Pair<String, Value>> symbolTable;
     @FXML
-    private TableColumn<Pair<String, IValue>, String> stackID;
+    private TableColumn<Pair<String, Value>, String> stackID;
     @FXML
-    private TableColumn<Pair<String, IValue>, String> stackValue;
+    private TableColumn<Pair<String, Value>, String> stackValue;
 
     @FXML
     private ListView<StringValue> fileTable;
@@ -68,12 +68,12 @@ public class ProgramLogic {
     @FXML
     public void initialize() {
         // exe stack
-        this.executionStack.setCellFactory(param -> new ListCell<Statement>() {
+        this.executionStack.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Statement item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if (empty || item == null){
+                if (empty || item == null) {
                     setText(null);
                 } else {
                     setText(item.toString());
@@ -90,9 +90,9 @@ public class ProgramLogic {
         this.heapAddress.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
         this.heapValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
 
-        this.out.setCellFactory(param -> new ListCell<IValue>() {
+        this.out.setCellFactory(param -> new ListCell<>() {
             @Override
-            protected void updateItem(IValue item, boolean empty) {
+            protected void updateItem(Value item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
@@ -103,7 +103,7 @@ public class ProgramLogic {
             }
         });
 
-        this.fileTable.setCellFactory(param -> new ListCell<StringValue>() {
+        this.fileTable.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(StringValue item, boolean empty) {
                 super.updateItem(item, empty);
@@ -116,7 +116,7 @@ public class ProgramLogic {
             }
         });
 
-        this.programStates.setCellFactory(param -> new ListCell<ProgramState>() {
+        this.programStates.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(ProgramState item, boolean empty) {
                 super.updateItem(item, empty);
@@ -205,10 +205,10 @@ public class ProgramLogic {
 
     }
 
-    private List<Integer> getAddrFromSymTable(Collection<IValue> symTableValues, IHeap heap) {
+    private List<Integer> getAddrFromSymTable(Collection<Value> symTableValues, Heap heap) {
         return symTableValues.stream()
-                .filter(v -> v instanceof RefValue)
-                .map(v -> (RefValue)v)
+                .filter(v -> v instanceof ReferenceValue)
+                .map(v -> (ReferenceValue)v)
                 .flatMap(
                         v->{
                             List<Integer> addresses = new ArrayList<>();
@@ -218,9 +218,9 @@ public class ProgramLogic {
                                 }
                                 addresses.add(v.getAddress());
                                 try {
-                                    IValue next = heap.getValue(v.getAddress());
-                                    if (next instanceof RefValue) {
-                                        v = (RefValue) next;
+                                    Value next = heap.getValue(v.getAddress());
+                                    if (next instanceof ReferenceValue) {
+                                        v = (ReferenceValue) next;
                                     } else break;
                                 } catch (DictionaryException e) {
                                     throw new RuntimeException(e);
@@ -231,7 +231,7 @@ public class ProgramLogic {
                 ).collect(Collectors.toList());
     }
 
-    private Map<Integer, IValue> safeGarbageCollector(List<Integer> symTableAddr, Map<Integer, IValue> heap) {
+    private Map<Integer, Value> safeGarbageCollector(List<Integer> symTableAddr, Map<Integer, Value> heap) {
         return heap.entrySet().stream().filter(e->symTableAddr.contains(e.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
@@ -266,7 +266,7 @@ public class ProgramLogic {
     }
 
     private void updateSymbolTable() {
-        ObservableList<Pair<String, IValue>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getSymTable().getContent().entrySet().stream().map(p -> new Pair<String, IValue>(p.getKey(), p.getValue())).collect(Collectors.toList()));
+        ObservableList<Pair<String, Value>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getSymTable().getContent().entrySet().stream().map(p -> new Pair<>(p.getKey(), p.getValue())).collect(Collectors.toList()));
 
         this.symbolTable.setItems(data);
     }
@@ -277,7 +277,7 @@ public class ProgramLogic {
     }
 
     private void updateHeap() {
-        ObservableList<Pair<Integer, String>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getHeap().getContent().entrySet().stream().map(p -> new Pair<Integer, String>(p.getKey(), p.getValue().toString())).collect(Collectors.toList()));
+        ObservableList<Pair<Integer, String>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getHeap().getContent().entrySet().stream().map(p -> new Pair<>(p.getKey(), p.getValue().toString())).collect(Collectors.toList()));
 
         this.heap.setItems(data);
     }

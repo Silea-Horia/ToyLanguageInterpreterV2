@@ -1,6 +1,6 @@
 package model.type;
 
-import model.value.IValue;
+import model.value.Value;
 import model.value.StringValue;
 
 public class StringType implements Type {
@@ -13,7 +13,7 @@ public class StringType implements Type {
     public String toString() { return "string"; }
 
     @Override
-    public IValue getDefaultValue() {
+    public Value getDefaultValue() {
         return new StringValue("");
     }
 }

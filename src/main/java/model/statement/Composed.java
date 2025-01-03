@@ -1,6 +1,6 @@
 package model.statement;
 
-import model.adt.IDictionary;
+import model.adt.Dictionary;
 import model.adt.IExeStack;
 import model.exception.StmtException;
 import model.state.ProgramState;
@@ -42,7 +42,7 @@ public class Composed implements Statement {
     }
 
     @Override
-    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
+    public Dictionary<String, Type> typeCheck(Dictionary<String, Type> typeEnv) throws StmtException {
         return this.second.typeCheck(this.first.typeCheck(typeEnv));
     }
 }

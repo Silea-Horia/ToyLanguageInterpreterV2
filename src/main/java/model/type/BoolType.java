@@ -1,7 +1,7 @@
 package model.type;
 
 import model.value.BoolValue;
-import model.value.IValue;
+import model.value.Value;
 
 public class BoolType implements Type {
     @Override
@@ -13,7 +13,7 @@ public class BoolType implements Type {
     public String toString() { return "bool"; }
 
     @Override
-    public IValue getDefaultValue() {
+    public Value getDefaultValue() {
         return new BoolValue(false);
     }
 }

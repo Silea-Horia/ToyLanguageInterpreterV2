@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class FileTable<K, V> implements IFileTable<K, V> {
-    private Map<K, V> map;
+public class FileTable<K, V> implements Dictionary<K, V> {
+    private final Map<K, V> map;
 
     public FileTable() {
         this.map = new HashMap<>();
@@ -38,6 +38,18 @@ public class FileTable<K, V> implements IFileTable<K, V> {
     @Override
     public Set<K> keys() {
         return this.map.keySet();
+    }
+
+    @Override
+    public Map<K, V> getContent() {
+        return this.map;
+    }
+
+    @Override
+    public Dictionary<K, V> deepCopy() {
+        FileTable<K, V> newTable = new FileTable<>();
+        this.map.forEach(newTable::insert);
+        return newTable;
     }
 
     @Override
