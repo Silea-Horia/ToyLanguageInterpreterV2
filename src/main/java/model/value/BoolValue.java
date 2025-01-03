@@ -1,12 +1,12 @@
 package model.value;
 
 import model.type.BoolType;
-import model.type.IType;
+import model.type.Type;
 
 import java.util.Objects;
 
 public class BoolValue implements IValue{
-    private boolean value;
+    private final boolean value;
 
     public BoolValue(boolean val) { this.value = val; }
 
@@ -16,7 +16,7 @@ public class BoolValue implements IValue{
     public String toString() { return Boolean.toString(this.value); }
 
     @Override
-    public IType getType() { return new BoolType(); }
+    public Type getType() { return new BoolType(); }
 
     @Override
     public boolean equals(Object other) {

@@ -3,7 +3,7 @@ package model.type;
 import model.value.IValue;
 import model.value.IntValue;
 
-public class IntType implements IType {
+public class IntType implements Type {
     @Override
     public boolean equals(Object other) {
         return other instanceof IntType;

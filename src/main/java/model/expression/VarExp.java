@@ -5,11 +5,11 @@ import model.adt.IHeap;
 import model.adt.ISymTable;
 import model.exception.DictionaryException;
 import model.exception.ExpressionException;
-import model.type.IType;
+import model.type.Type;
 import model.value.IValue;
 
 public class VarExp implements IExp {
-    private String id;
+    private final String id;
 
     public VarExp(String id) { this.id = id; }
 
@@ -28,7 +28,7 @@ public class VarExp implements IExp {
     }
 
     @Override
-    public IType typeCheck(IDictionary<String, IType> typeEnv) throws ExpressionException {
+    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
         try {
             return typeEnv.lookup(this.id);
         } catch (DictionaryException e) {

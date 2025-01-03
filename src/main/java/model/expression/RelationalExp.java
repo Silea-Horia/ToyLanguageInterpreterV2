@@ -5,21 +5,21 @@ import model.adt.IHeap;
 import model.adt.ISymTable;
 import model.exception.ExpressionException;
 import model.type.BoolType;
-import model.type.IType;
+import model.type.Type;
 import model.type.IntType;
 import model.value.BoolValue;
 import model.value.IValue;
 import model.value.IntValue;
 
 public class RelationalExp implements IExp {
-    private IExp left;
-    private IExp right;
-    private RelationalOperation relation;
-    private IntType intType;
+    private final IExp leftOperand;
+    private final IExp rightOperand;
+    private final RelationalOperation relation;
+    private final IntType intType;
 
-    public RelationalExp(IExp left, IExp right, RelationalOperation relation) {
-        this.left = left;
-        this.right = right;
+    public RelationalExp(IExp leftOperand, IExp rightOperand, RelationalOperation relation) {
+        this.leftOperand = leftOperand;
+        this.rightOperand = rightOperand;
         this.relation = relation;
         this.intType = new IntType();
     }
@@ -27,13 +27,13 @@ public class RelationalExp implements IExp {
     @Override
     public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException {
         try {
-            IValue leftVal = left.eval(tbl, heap);
+            IValue leftVal = leftOperand.eval(tbl, heap);
 
             if (!leftVal.getType().equals(this.intType)) {
                 throw new ExpressionException("Left operand is not an Int type\n");
             }
 
-            IValue rightVal = right.eval(tbl, heap);
+            IValue rightVal = rightOperand.eval(tbl, heap);
 
             if (!rightVal.getType().equals(this.intType)) {
                 throw new ExpressionException("Right operand is not an Int type\n");
@@ -74,13 +74,13 @@ public class RelationalExp implements IExp {
 
     @Override
     public IExp deepCopy() {
-        return new RelationalExp(left.deepCopy(), right.deepCopy(), relation);
+        return new RelationalExp(leftOperand.deepCopy(), rightOperand.deepCopy(), relation);
     }
 
     @Override
-    public IType typeCheck(IDictionary<String, IType> typeEnv) throws ExpressionException {
-        if (this.left.typeCheck(typeEnv).equals(this.intType)) {
-            if (this.right.typeCheck(typeEnv).equals(this.intType)) {
+    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
+        if (this.leftOperand.typeCheck(typeEnv).equals(this.intType)) {
+            if (this.rightOperand.typeCheck(typeEnv).equals(this.intType)) {
                 return new BoolType();
             }
             throw new ExpressionException("Right operand is not an integer\n");
@@ -91,13 +91,13 @@ public class RelationalExp implements IExp {
     @Override
     public String toString() {
         return switch (this.relation) {
-            case SMALLER -> this.left + "<" + this.right;
-            case SMALLEROREQUAL -> this.left + "<=" + this.right;
-            case GREATER -> this.left + ">" + this.right;
-            case GREATEROREQUAL -> this.left + ">=" + this.right;
-            case EQUAL -> this.left + "==" + this.right;
-            case NOTEQUAL -> this.left + "!=" + this.right;
-            default -> this.left + "?" + this.right;
+            case SMALLER -> this.leftOperand + "<" + this.rightOperand;
+            case SMALLEROREQUAL -> this.leftOperand + "<=" + this.rightOperand;
+            case GREATER -> this.leftOperand + ">" + this.rightOperand;
+            case GREATEROREQUAL -> this.leftOperand + ">=" + this.rightOperand;
+            case EQUAL -> this.leftOperand + "==" + this.rightOperand;
+            case NOTEQUAL -> this.leftOperand + "!=" + this.rightOperand;
+            default -> this.leftOperand + "?" + this.rightOperand;
         };
     }
 }

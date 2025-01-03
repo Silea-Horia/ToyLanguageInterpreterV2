@@ -1,19 +1,19 @@
 package model.value;
 
-import model.type.IType;
+import model.type.Type;
 import model.type.StringType;
 
 import java.util.Objects;
 
 public class StringValue implements IValue {
-    private String value;
+    private final String value;
 
     public StringValue(String value) {
         this.value = value;
     }
 
     @Override
-    public IType getType() {
+    public Type getType() {
         return new StringType();
     }
 

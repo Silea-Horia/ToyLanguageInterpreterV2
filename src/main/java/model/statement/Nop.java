@@ -3,7 +3,7 @@ package model.statement;
 import model.adt.IDictionary;
 import model.exception.StmtException;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 
 public class Nop implements Statement {
 
@@ -23,7 +23,7 @@ public class Nop implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         return typeEnv;
     }
 }

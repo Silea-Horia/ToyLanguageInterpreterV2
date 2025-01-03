@@ -3,7 +3,7 @@ package model.type;
 import model.value.IValue;
 import model.value.StringValue;
 
-public class StringType implements IType {
+public class StringType implements Type {
     @Override
     public boolean equals(Object other) {
         return other instanceof StringType;

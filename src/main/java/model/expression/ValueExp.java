@@ -4,29 +4,29 @@ import model.adt.IDictionary;
 import model.adt.IHeap;
 import model.adt.ISymTable;
 import model.exception.ExpressionException;
-import model.type.IType;
+import model.type.Type;
 import model.value.IValue;
 
 public class ValueExp implements IExp{
-    private IValue e;
+    private final IValue value;
 
-    public ValueExp(IValue e) { this.e = e; }
+    public ValueExp(IValue value) { this.value = value; }
 
     @Override
-    public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException { return this.e; }
+    public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException { return this.value; }
 
     @Override
     public IExp deepCopy() {
-        return new ValueExp(this.e);
+        return new ValueExp(this.value);
     }
 
     @Override
-    public IType typeCheck(IDictionary<String, IType> typeEnv) throws ExpressionException {
-        return this.e.getType();
+    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
+        return this.value.getType();
     }
 
     @Override
     public String toString() {
-        return this.e.toString();
+        return this.value.toString();
     }
 }

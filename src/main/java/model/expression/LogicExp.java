@@ -5,31 +5,31 @@ import model.adt.IHeap;
 import model.adt.ISymTable;
 import model.exception.ExpressionException;
 import model.type.BoolType;
-import model.type.IType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.IValue;
 
 public class LogicExp implements IExp{
-    private IExp e1;
-    private IExp e2;
-    private int op; // 1 - and, 2 - or
-    private BoolType boolType;
+    private final IExp leftOperand;
+    private final IExp rightOperand;
+    private final int operation; // 1 - and, 2 - or
+    private final BoolType boolType;
 
-    public LogicExp(IExp e1, IExp e2, int op) {
-        this.e1 = e1;
-        this.e2 = e2;
-        this.op = op;
+    public LogicExp(IExp leftOperand, IExp rightOperand, int operation) {
+        this.leftOperand = leftOperand;
+        this.rightOperand = rightOperand;
+        this.operation = operation;
         this.boolType = new BoolType();
     }
 
     @Override
     public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException {
         IValue v1, v2;
-        v1 = this.e1.eval(tbl, heap);
+        v1 = this.leftOperand.eval(tbl, heap);
         if (v1.getType().equals(this.boolType)) {
-            v2 = this.e2.eval(tbl, heap);
+            v2 = this.rightOperand.eval(tbl, heap);
             if (v2.getType().equals(this.boolType)) {
-                if (this.op == 1) return new BoolValue(((BoolValue)v1).getValue() && ((BoolValue)v2).getValue());
+                if (this.operation == 1) return new BoolValue(((BoolValue)v1).getValue() && ((BoolValue)v2).getValue());
                 else return new BoolValue(((BoolValue)v1).getValue() || ((BoolValue)v2).getValue()  );
             } else throw new ExpressionException("Second operand is not boolean!\n");
         }
@@ -38,13 +38,13 @@ public class LogicExp implements IExp{
 
     @Override
     public IExp deepCopy() {
-        return new LogicExp(this.e1.deepCopy(), this.e2.deepCopy(), this.op);
+        return new LogicExp(this.leftOperand.deepCopy(), this.rightOperand.deepCopy(), this.operation);
     }
 
     @Override
-    public IType typeCheck(IDictionary<String, IType> typeEnv) throws ExpressionException {
-        if (this.e1.typeCheck(typeEnv).equals(this.boolType)) {
-            if (this.e2.typeCheck(typeEnv).equals(this.boolType)) {
+    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
+        if (this.leftOperand.typeCheck(typeEnv).equals(this.boolType)) {
+            if (this.rightOperand.typeCheck(typeEnv).equals(this.boolType)) {
                 return new BoolType();
             }
             throw new ExpressionException("Right operand is not a boolean\n");
@@ -54,9 +54,11 @@ public class LogicExp implements IExp{
 
     @Override
     public String toString() {
-        return switch (this.op) {
-            case 1 -> this.e1 + "&" + this.e2;
-            default -> this.e1 + "|" + this.e2;
-        };
+        String sign;
+
+        if (this.operation == 1) sign = "&";
+        else sign = "|";
+
+        return this.leftOperand + sign + this.leftOperand;
     }
 }

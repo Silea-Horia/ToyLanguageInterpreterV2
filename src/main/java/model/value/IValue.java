@@ -1,8 +1,8 @@
 package model.value;
 
-import model.type.IType;
+import model.type.Type;
 
 public interface IValue {
-    IType getType();
+    Type getType();
     boolean equals(Object other);
 }

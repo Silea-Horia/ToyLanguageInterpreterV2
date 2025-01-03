@@ -7,7 +7,7 @@ import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 import model.value.IValue;
 
 public class Assign implements Statement {
@@ -49,7 +49,7 @@ public class Assign implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (typeEnv.lookup(this.id).equals(this.expression.typeCheck(typeEnv))) {
                 return typeEnv;

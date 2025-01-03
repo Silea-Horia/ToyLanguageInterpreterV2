@@ -6,7 +6,7 @@ import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
@@ -46,10 +46,10 @@ public class New implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
-            IType varType = typeEnv.lookup(this.id);
-            IType expType = this.expression.typeCheck(typeEnv);
+            Type varType = typeEnv.lookup(this.id);
+            Type expType = this.expression.typeCheck(typeEnv);
             if (varType.equals(new RefType(expType))) {
                 return typeEnv;
             }

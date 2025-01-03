@@ -5,7 +5,7 @@ import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 import model.type.StringType;
 import model.value.IValue;
 import model.value.StringValue;
@@ -54,7 +54,7 @@ public class OpenFile implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.path.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;

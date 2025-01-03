@@ -4,7 +4,7 @@ import model.adt.IDictionary;
 import model.adt.IExeStack;
 import model.exception.StmtException;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 
 public class Composed implements Statement {
     private final Statement first;
@@ -42,7 +42,7 @@ public class Composed implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         return this.second.typeCheck(this.first.typeCheck(typeEnv));
     }
 }

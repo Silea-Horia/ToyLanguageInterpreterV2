@@ -4,14 +4,14 @@ import model.adt.IDictionary;
 import model.adt.ISymTable;
 import model.exception.StmtException;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 import model.value.IValue;
 
 public class VariableDeclaration implements Statement {
-    private final IType type;
+    private final Type type;
     private final String id;
 
-    public VariableDeclaration(String id, IType type) {
+    public VariableDeclaration(String id, Type type) {
         this.type = type;
         this.id = id;
     }
@@ -35,7 +35,7 @@ public class VariableDeclaration implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         typeEnv.insert(this.id, this.type);
         return typeEnv;
     }

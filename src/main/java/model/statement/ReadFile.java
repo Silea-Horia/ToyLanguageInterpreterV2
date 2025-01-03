@@ -7,7 +7,7 @@ import model.exception.ExpressionException;
 import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 import model.type.IntType;
 import model.type.StringType;
 import model.value.IValue;
@@ -46,8 +46,10 @@ public class ReadFile implements Statement {
             IValue eval = this.fileName.eval(symTable, state.getHeap());
 
             try {
-                BufferedReader br = state.getFileTable().lookup((StringValue) eval);
-                String readVal = br.readLine();
+                String readVal;
+                try (BufferedReader br = state.getFileTable().lookup((StringValue) eval)) {
+                    readVal = br.readLine();
+                }
                 IntValue newValue;
                 if (readVal == null) {
                     newValue = new IntValue(0);
@@ -70,7 +72,7 @@ public class ReadFile implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.fileName.typeCheck(typeEnv).equals(stringType)) {
                 return typeEnv;

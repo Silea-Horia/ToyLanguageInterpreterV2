@@ -3,7 +3,7 @@ package model.type;
 import model.value.BoolValue;
 import model.value.IValue;
 
-public class BoolType implements IType {
+public class BoolType implements Type {
     @Override
     public boolean equals(Object other) {
         return other instanceof BoolType;

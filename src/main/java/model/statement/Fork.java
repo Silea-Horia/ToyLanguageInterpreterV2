@@ -4,7 +4,7 @@ import model.adt.ExeStack;
 import model.adt.IDictionary;
 import model.exception.StmtException;
 import model.state.ProgramState;
-import model.type.IType;
+import model.type.Type;
 
 public class Fork implements Statement {
     private final Statement newProgram;
@@ -26,7 +26,7 @@ public class Fork implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         this.newProgram.typeCheck(typeEnv.deepCopy());
         return typeEnv;
     }

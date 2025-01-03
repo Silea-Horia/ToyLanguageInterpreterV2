@@ -6,7 +6,7 @@ import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
 import model.type.BoolType;
-import model.type.IType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.IValue;
 
@@ -43,7 +43,7 @@ public class While implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.condition.typeCheck(typeEnv).equals(boolType)) {
                 this.command.typeCheck(typeEnv);

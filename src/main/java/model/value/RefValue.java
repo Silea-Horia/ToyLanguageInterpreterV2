@@ -1,15 +1,15 @@
 package model.value;
 
-import model.type.IType;
+import model.type.Type;
 import model.type.RefType;
 
 import java.util.Objects;
 
 public class RefValue implements IValue {
-    private int address;
-    private IType locationType;
+    private final int address;
+    private final Type locationType;
 
-    public RefValue(int address, IType locationType) {
+    public RefValue(int address, Type locationType) {
         this.address = address;
         this.locationType = locationType;
     }
@@ -18,12 +18,12 @@ public class RefValue implements IValue {
         return this.address;
     }
 
-    public IType getLocationType() {
+    public Type getLocationType() {
         return this.locationType;
     }
 
     @Override
-    public IType getType() {
+    public Type getType() {
         return new RefType(this.locationType);
     }
 

@@ -7,7 +7,7 @@ import model.exception.StmtException;
 import model.expression.IExp;
 import model.state.ProgramState;
 import model.type.BoolType;
-import model.type.IType;
+import model.type.Type;
 import model.value.BoolValue;
 import model.value.IValue;
 
@@ -51,7 +51,7 @@ public class If implements Statement {
     }
 
     @Override
-    public IDictionary<String, IType> typeCheck(IDictionary<String, IType> typeEnv) throws StmtException {
+    public IDictionary<String, Type> typeCheck(IDictionary<String, Type> typeEnv) throws StmtException {
         try {
             if (this.expression.typeCheck(typeEnv).equals(boolType)) {
                 this.thenBody.typeCheck(typeEnv.deepCopy());

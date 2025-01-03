@@ -3,21 +3,15 @@ package model.type;
 import model.value.IValue;
 import model.value.RefValue;
 
-public class RefType implements IType {
-    private IType inner;
+public class RefType implements Type {
+    private final Type inner;
 
-    public RefType(IType inner) { this.inner = inner; }
+    public RefType(Type inner) { this.inner = inner; }
 
-    public IType getInner() { return inner; }
+    public Type getInner() { return inner; }
 
     @Override
     public boolean equals(Object obj) {
-//        return obj instanceof RefType;
-//        if (obj instanceof RefType) {
-//            return inner.equals(((RefType) obj).inner);
-//        }
-//        return false;
-
         return obj instanceof RefType && ((RefType) obj).getInner().equals(this.inner);
     }
 

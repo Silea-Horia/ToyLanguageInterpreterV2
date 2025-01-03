@@ -4,34 +4,34 @@ import model.adt.IDictionary;
 import model.adt.IHeap;
 import model.adt.ISymTable;
 import model.exception.ExpressionException;
-import model.type.IType;
+import model.type.Type;
 import model.type.IntType;
 import model.value.IValue;
 import model.value.IntValue;
 
 public class ArithExp implements IExp {
-    private IExp e1;
-    private IExp e2;
-    private char op;
-    private IntType intType;
+    private final IExp leftOperand;
+    private final IExp rightOperand;
+    private final char operator;
+    private final IntType intType;
 
-    public ArithExp(IExp e1, IExp e2, char op) {
-        this.e1 = e1;
-        this.e2 = e2;
-        this.op = op;
+    public ArithExp(IExp leftOperand, IExp rightOperand, char operator) {
+        this.leftOperand = leftOperand;
+        this.rightOperand = rightOperand;
+        this.operator = operator;
         this.intType = new IntType();
     }
 
     @Override
     public IValue eval(ISymTable<String, IValue> tbl, IHeap heap) throws ExpressionException {
         IValue v1, v2;
-        v1 = this.e1.eval(tbl, heap);
+        v1 = this.leftOperand.eval(tbl, heap);
         if (v1.getType().equals(new IntType())) {
-            v2 = this.e2.eval(tbl, heap);
+            v2 = this.rightOperand.eval(tbl, heap);
             if (v2.getType().equals(new IntType())) {
                 int n1 = ((IntValue)v1).getValue();
                 int n2 = ((IntValue)v2).getValue();
-                switch (this.op) {
+                switch (this.operator) {
                     case '+':
                         return new IntValue(n1 + n2);
                     case '-':
@@ -49,13 +49,13 @@ public class ArithExp implements IExp {
 
     @Override
     public IExp deepCopy() {
-        return new ArithExp(this.e1.deepCopy(), this.e2.deepCopy(), this.op);
+        return new ArithExp(this.leftOperand.deepCopy(), this.rightOperand.deepCopy(), this.operator);
     }
 
     @Override
-    public IType typeCheck(IDictionary<String, IType> typeEnv) throws ExpressionException {
-        IType type1 = this.e1.typeCheck(typeEnv);
-        IType type2 = this.e2.typeCheck(typeEnv);
+    public Type typeCheck(IDictionary<String, Type> typeEnv) throws ExpressionException {
+        Type type1 = this.leftOperand.typeCheck(typeEnv);
+        Type type2 = this.rightOperand.typeCheck(typeEnv);
 
         if (type1.equals(this.intType)) {
             if (type2.equals(this.intType)) {
@@ -70,11 +70,11 @@ public class ArithExp implements IExp {
 
     @Override
     public String toString() {
-        return switch (this.op) {
-            case '+' -> this.e1 + "+" + this.e2;
-            case '-' -> this.e1 + "-" + this.e2;
-            case '*' -> this.e1 + "*" + this.e2;
-            default -> this.e1 + "/" + this.e2;
+        return switch (this.operator) {
+            case '+' -> this.leftOperand + "+" + this.rightOperand;
+            case '-' -> this.leftOperand + "-" + this.rightOperand;
+            case '*' -> this.leftOperand + "*" + this.rightOperand;
+            default -> this.leftOperand + "/" + this.rightOperand;
         };
     }
 }
