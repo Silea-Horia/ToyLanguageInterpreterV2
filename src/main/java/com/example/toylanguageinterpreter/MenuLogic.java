@@ -1,6 +1,5 @@
 package com.example.toylanguageinterpreter;
 
-import controller.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import model.exception.ControllerException;
 import model.exception.RepoException;
 import model.statement.Statement;
 import repository.Repository;
@@ -33,15 +31,11 @@ public class MenuLogic {
         try {
             ObservableList<Integer> indices = this.programs.getSelectionModel().getSelectedIndices();
 
-            if (indices.isEmpty()) {
-                // TODO error
-                System.exit(1);
+            if (!indices.isEmpty()) {
+                this.repository.setState(indices.getFirst());
+
+                this.createProgramWindow();
             }
-
-            this.repository.setState(indices.getFirst());
-
-            this.createProgramWindow();
-
         } catch (RepoException | IOException e) {
             throw new RuntimeException(e);
         }

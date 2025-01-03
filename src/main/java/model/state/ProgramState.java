@@ -17,26 +17,21 @@ public class ProgramState {
     private final IOutList<IValue> out;
     private final IFileTable<StringValue, BufferedReader> fileTable;
     private final IHeap heap;
-    private Integer id;
-    private static int lastId = 0;  // TODO reset on new program
+    private final Integer id;
 
-    public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap) {
+    public ProgramState(IExeStack<Statement> exeStack, ISymTable<String, IValue> symTable, IOutList<IValue> out, Statement originalProgram, IFileTable<StringValue, BufferedReader> fileTable, IHeap heap, int id) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.heap = heap;
         this.convertToStack(originalProgram);
         this.fileTable = fileTable;
-        this.setId();
-    }
-
-    private synchronized void setId() {
-        this.id = lastId++;
+        this.id = id;
     }
 
     private void convertToStack(Statement stmt) {
         Statement first, second;
-        //stmt.toString().startsWith("comp")
+
         if (stmt instanceof Composed) {
             first = ((Composed)stmt).getFirst();
             second = ((Composed)stmt).getSecond();

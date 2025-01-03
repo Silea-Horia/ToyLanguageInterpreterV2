@@ -206,6 +206,6 @@ public class MemoryRepository implements Repository {
             throw new RepoException(e.getMessage());
         }
         this.programs.clear();
-        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new Heap()));
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new Heap(), 0));
     }
 }
