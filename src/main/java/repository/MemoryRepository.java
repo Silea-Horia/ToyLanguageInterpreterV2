@@ -75,11 +75,6 @@ public class MemoryRepository implements Repository {
     }
 
     private void generateState1() {
-        this.generatedStatements.add(new Composed(new VariableDeclaration("v", new IntType()),
-                            new Composed(new Assign("v",new ValueExp(new IntegerValue(2))), new Print(new VariableExp("v")))));
-    }
-
-    private void generateState2() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("a",new IntType()),
                 new Composed(new VariableDeclaration("b",new IntType()),
                         new Composed(new Assign("a", new ArithmeticExp(new ValueExp(new IntegerValue(2)),new ArithmeticExp(new ValueExp(new IntegerValue(3)), new ValueExp(new IntegerValue(5)), '*'), '+')),
@@ -87,15 +82,7 @@ public class MemoryRepository implements Repository {
                                         new Print(new VariableExp("b")))))));
     }
 
-    private void generateState3() {
-        this.generatedStatements.add(new Composed(new VariableDeclaration("a",new BoolType()),
-                new Composed(new VariableDeclaration("v", new IntType()),
-                        new Composed(new Assign("a", new ValueExp(new BoolValue(true))),
-                                new Composed(new If(new VariableExp("a"),new Assign("v",new ValueExp(new
-                                        IntegerValue(2))), new Assign("v", new ValueExp(new IntegerValue(3)))), new Print(new VariableExp("v")))))));
-    }
-
-    private void generateState4() {
+    private void generateState2() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("varf",new StringType()),
                 new Composed(new Assign("varf", new ValueExp(new StringValue("src/main/java/files/test.in"))),
                         new Composed(new OpenFile(new VariableExp("varf")),
@@ -107,7 +94,7 @@ public class MemoryRepository implements Repository {
                                                                         new CloseFile(new VariableExp("varf")))))))))));
     }
 
-    private void generateState5() {
+    private void generateState3() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("v", new RefType(new IntType())),
                 new Composed(new New("v", new ValueExp(new IntegerValue(20))),
                         new Composed(new VariableDeclaration("a", new RefType(new RefType(new IntType()))),
@@ -119,7 +106,7 @@ public class MemoryRepository implements Repository {
                                                                         new Print(new ReadHeapExp(new VariableExp("v"))))))))))));
     }
 
-    private void generateState6() {
+    private void generateState4() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("v", new RefType(new IntType())),
                 new Composed(new New("v", new ValueExp(new IntegerValue(20))),
                         new Composed(new VariableDeclaration("a", new RefType(new RefType(new IntType()))),
@@ -129,7 +116,7 @@ public class MemoryRepository implements Repository {
                                                         new New("v", new ValueExp(new IntegerValue(50))))))))));
     }
 
-    private void generateState7() {
+    private void generateState5() {
         this.generatedStatements.add(new Composed(new VariableDeclaration("v", new IntType()),
                 new Composed(new Assign("v", new ValueExp(new IntegerValue(4))),
                         new Composed(new While(new RelationalExp(new VariableExp("v"), new ValueExp(new IntegerValue(0)), GREATER),
@@ -137,31 +124,7 @@ public class MemoryRepository implements Repository {
                                 new Print(new VariableExp("v"))))));
     }
 
-    private void generateState8() {
-        this.generatedStatements.add(new Composed(
-          new VariableDeclaration("v", new IntType()), new Composed(
-                  new VariableDeclaration("a", new RefType(new IntType())), new Composed(
-                          new Assign("v", new ValueExp(new IntegerValue(10))), new Composed(
-                                  new New("a", new ValueExp(new IntegerValue(22))), new Composed(
-                                          new Fork(new Composed(
-                                                  new WriteHeap("a", new ValueExp(new IntegerValue(30))), new Composed(
-                                                          new Assign("v", new ValueExp(new IntegerValue(32))), new Composed(
-                                                                  new Print(new VariableExp("v")),
-                                                                    new Print(new ReadHeapExp(new VariableExp("a")))
-                                          )
-                                          )
-                                          )
-                                          ), new Composed(
-                                                  new Print(new VariableExp("v")), new Print(new ReadHeapExp(new VariableExp("a")))
-                                            )
-                                )
-                        )
-                )
-            )
-        ));
-    }
-
-    private void generateState9() {
+    private void generateState6() {
         // Ref inv v; new(v, 20); Ref Ref int a; new(a, v); fork(Ref int b; new(v,30); new(b,v););
         this.generatedStatements.add(new Composed(
           new VariableDeclaration("v", new RefType(new IntType())), new Composed(
@@ -185,6 +148,30 @@ public class MemoryRepository implements Repository {
         ));
     }
 
+    private void generateState7() {
+        this.generatedStatements.add(
+                new Composed(new VariableDeclaration("a", new IntType()),
+                        new Composed(new VariableDeclaration("b", new IntType()),
+                                new Composed(new VariableDeclaration("c", new IntType()),
+                                        new Composed(new Assign("a", new ValueExp(new IntegerValue(1))),
+                                                new Composed(new Assign("b", new ValueExp(new IntegerValue(2))),
+                                                        new Composed(new Assign("c", new ValueExp(new IntegerValue(5))),
+                                                            new Composed(new Switch(new ArithmeticExp(new VariableExp("a"), new ValueExp(new IntegerValue(10)), '*'),
+                                                                    new ArithmeticExp(new VariableExp("b"), new VariableExp("c"), '*'),
+                                                                    new Composed(new Print(new VariableExp("a")), new Print(new VariableExp("b"))),
+                                                                    new ValueExp(new IntegerValue(10)),
+                                                                    new Composed(new Print(new ValueExp(new IntegerValue(100))), new Print(new ValueExp(new IntegerValue(200)))),
+                                                                    new Print(new ValueExp(new IntegerValue(300)))), new Print(new ValueExp(new IntegerValue(300)))
+                                                            )
+                                                    )
+                                            )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -193,8 +180,6 @@ public class MemoryRepository implements Repository {
         this.generateState5();
         this.generateState6();
         this.generateState7();
-        this.generateState8();
-        this.generateState9();
     }
 
     @Override

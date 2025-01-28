@@ -1,8 +1,13 @@
 ProgramState no. 0 is:
 ExeStack:
-int v;
-v=2;
-print(v);
+int a;
+int b;
+int c;
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
 Out:
 FileTable:
@@ -10,48 +15,308 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=2;
-print(v);
+int b;
+int c;
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
-v->0
+a->0
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-v=2;
-print(v);
+int b;
+int c;
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
-v->0
+a->0
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
+int c;
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
-v->2
+a->0
+b->0
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-print(v);
+int c;
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
-v->2
+a->0
+b->0
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
 SymTable:
-v->2
+a->0
+b->0
+c->0
 Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+a=1;
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->0
+b->0
+c->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->0
+c->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+b=2;
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->0
+c->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->2
+c->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+c=5;
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->2
+c->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+if(a*10==b*c) thenBody(print(a);print(b)) else(if(a*10==10) thenBody(print(100);print(200)) else(print(300)));
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+if(a*10==b*c) thenBody(print(a);print(b)) else(if(a*10==10) thenBody(print(100);print(200)) else(print(300)));
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(a);print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(a);print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(a);
+print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(a);
+print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+1
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(b);
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+1
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+1
 2
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+print(300);
+SymTable:
+a->1
+b->2
+c->5
+Out:
+1
+2
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+a->1
+b->2
+c->5
+Out:
+1
+2
+300
 FileTable:
 HashHeap:
 
