@@ -146,7 +146,7 @@ public class MemoryRepository implements Repository {
         ));
     }
 
-    private void generateState7() {
+    private void generateStateSwitch() {
         this.generatedStatements.add(
                 new Composed(new VariableDeclaration("a", new IntType()),
                         new Composed(new VariableDeclaration("b", new IntType()),
@@ -170,7 +170,7 @@ public class MemoryRepository implements Repository {
         );
     }
 
-    private void generateState8() {
+    private void generateStateSemaphore() {
         this.generatedStatements.add(
             new Composed(new VariableDeclaration("v1", new RefType(new IntType())),
                     new Composed(new VariableDeclaration("cnt", new IntType()),
@@ -199,6 +199,18 @@ public class MemoryRepository implements Repository {
         ));
     }
 
+    private void generateStateConditionalAssign() {
+        this.generatedStatements.add(
+                new Composed(new VariableDeclaration("a", new RefType(new IntType())),
+                        new Composed(new VariableDeclaration("b", new RefType(new IntType())),
+                                new Composed(new VariableDeclaration("v", new IntType()),
+                                        new Composed(new New("a", new ValueExp(new IntegerValue(1))),
+                                                new Composed(new New("b", new ValueExp(new IntegerValue(2))),
+                                                        new Composed(new ConditionalAssign("v", new RelationalExp(new ReadHeapExp(new VariableExp("a")), new ReadHeapExp(new VariableExp("b")), RelationalOperation.SMALLER), new ValueExp(new IntegerValue(100)), new ValueExp(new IntegerValue(200))),
+                                                                new Print(new VariableExp("v"))))))))
+        );
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -206,8 +218,9 @@ public class MemoryRepository implements Repository {
         this.generateState4();
         this.generateState5();
         this.generateState6();
-        this.generateState7();
-        this.generateState8();
+        this.generateStateSwitch();
+        this.generateStateSemaphore();
+        this.generateStateConditionalAssign();
     }
 
     @Override

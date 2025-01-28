@@ -1,14 +1,12 @@
 ProgramState no. 0 is:
 ExeStack:
-Ref (int) v1;
-int cnt;
-new(v1, 1);
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+Ref (int) a;
+Ref (int) b;
+int v;
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
 Out:
 FileTable:
@@ -16,79 +14,97 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int cnt;
-new(v1, 1);
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+Ref (int) b;
+int v;
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-v1->(0, int)
+a->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int cnt;
-new(v1, 1);
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+Ref (int) b;
+int v;
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-v1->(0, int)
+a->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(v1, 1);
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+int v;
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(0, int)
+a->(0, int)
+b->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(v1, 1);
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+int v;
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(0, int)
+a->(0, int)
+b->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(0, int)
+b->(0, int)
+v->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(a, 1);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
+SymTable:
+a->(0, int)
+b->(0, int)
+v->0
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
+SymTable:
+a->(1, int)
+b->(0, int)
+v->0
 Out:
 FileTable:
 HashHeap:
@@ -96,15 +112,13 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-createSemaphore(cnt, rH(v1));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+new(b, 2);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(0, int)
+v->0
 Out:
 FileTable:
 HashHeap:
@@ -112,652 +126,124 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+v=rH(a)<rH(b)?100:200;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+if(rH(a)<rH(b)) thenBody(v=100) else(v=200);
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-print(rH(v1));
-release(cnt);
+if(rH(a)<rH(b)) thenBody(v=100) else(v=200);
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+v=100;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-print(rH(v1));
-release(cnt);
+v=100;
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->0
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
 ProgramState no. 0 is:
 ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->100
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
-ProgramState no. 1 is:
+ProgramState no. 0 is:
 ExeStack:
-wh(v1, rH(v1)*10);
-print(rH(v1));
-release(cnt);
+print(v);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->100
 Out:
 FileTable:
 HashHeap:
 1->1
+2->2
 
-ProgramState no. 2 is:
+ProgramState no. 0 is:
 ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
 SymTable:
-cnt->0
-v1->(1, int)
+a->(1, int)
+b->(2, int)
+v->100
 Out:
+100
 FileTable:
 HashHeap:
 1->1
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->1
-
-ProgramState no. 1 is:
-ExeStack:
-wh(v1, rH(v1)*10);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->1
-
-ProgramState no. 2 is:
-ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->1
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 1 is:
-ExeStack:
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 1 is:
-ExeStack:
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 1 is:
-ExeStack:
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 1 is:
-ExeStack:
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-acquire(cnt);
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 1 is:
-ExeStack:
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 2 is:
-ExeStack:
-wh(v1, rH(v1)*10);
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->10
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->100
-
-ProgramState no. 2 is:
-ExeStack:
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->100
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->100
-
-ProgramState no. 2 is:
-ExeStack:
-wh(v1, rH(v1)*2);
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->100
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 2 is:
-ExeStack:
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 2 is:
-ExeStack:
-print(rH(v1));
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 2 is:
-ExeStack:
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 2 is:
-ExeStack:
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 2 is:
-ExeStack:
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-acquire(cnt);
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-print(rH(v1)-1);
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-FileTable:
-HashHeap:
-1->200
-
-ProgramState no. 0 is:
-ExeStack:
-release(cnt);
-SymTable:
-cnt->0
-v1->(1, int)
-Out:
-10
-200
-199
-FileTable:
-HashHeap:
-1->200
+2->2
 
