@@ -190,7 +190,6 @@ public class ProgramLogic {
             this.repository.setPrgList(programStateList);
 
         } catch (InterruptedException e) {
-            // TODO error
             System.out.println(e.getMessage());
             System.exit(1);
         }
@@ -266,7 +265,16 @@ public class ProgramLogic {
     }
 
     private void updateSymbolTable() {
-        ObservableList<Pair<String, Value>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getSymTable().getContent().entrySet().stream().map(p -> new Pair<>(p.getKey(), p.getValue())).collect(Collectors.toList()));
+        ObservableList<Pair<String, Value>> data =
+                FXCollections.observableArrayList(this.repository
+                        .getPrgList()
+                        .getFirst()
+                        .getSymTable()
+                        .getContent()
+                        .entrySet()
+                        .stream()
+                        .map(p -> new Pair<>(p.getKey(), p.getValue()))
+                        .collect(Collectors.toList()));
 
         this.symbolTable.setItems(data);
     }
@@ -277,7 +285,16 @@ public class ProgramLogic {
     }
 
     private void updateHeap() {
-        ObservableList<Pair<Integer, String>> data = FXCollections.observableArrayList(this.repository.getPrgList().getFirst().getHeap().getContent().entrySet().stream().map(p -> new Pair<>(p.getKey(), p.getValue().toString())).collect(Collectors.toList()));
+        ObservableList<Pair<Integer, String>> data =
+                FXCollections.observableArrayList(this.repository
+                        .getPrgList()
+                        .getFirst()
+                        .getHeap()
+                        .getContent()
+                        .entrySet()
+                        .stream()
+                        .map(p -> new Pair<>(p.getKey(), p.getValue().toString()))
+                        .collect(Collectors.toList()));
 
         this.heap.setItems(data);
     }

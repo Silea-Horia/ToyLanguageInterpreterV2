@@ -1,9 +1,7 @@
 ProgramState no. 0 is:
 ExeStack:
-bool a;
 int v;
-a=true;
-if(a) thenBody(v=2) else(v=3);
+v=2;
 print(v);
 SymTable:
 Out:
@@ -12,69 +10,9 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int v;
-a=true;
-if(a) thenBody(v=2) else(v=3);
+v=2;
 print(v);
 SymTable:
-a->false
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-int v;
-a=true;
-if(a) thenBody(v=2) else(v=3);
-print(v);
-SymTable:
-a->false
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-a=true;
-if(a) thenBody(v=2) else(v=3);
-print(v);
-SymTable:
-a->false
-v->0
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-a=true;
-if(a) thenBody(v=2) else(v=3);
-print(v);
-SymTable:
-a->false
-v->0
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-if(a) thenBody(v=2) else(v=3);
-print(v);
-SymTable:
-a->true
-v->0
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-if(a) thenBody(v=2) else(v=3);
-print(v);
-SymTable:
-a->true
 v->0
 Out:
 FileTable:
@@ -85,18 +23,6 @@ ExeStack:
 v=2;
 print(v);
 SymTable:
-a->true
-v->0
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-v=2;
-print(v);
-SymTable:
-a->true
 v->0
 Out:
 FileTable:
@@ -106,7 +32,6 @@ ProgramState no. 0 is:
 ExeStack:
 print(v);
 SymTable:
-a->true
 v->2
 Out:
 FileTable:
@@ -116,7 +41,6 @@ ProgramState no. 0 is:
 ExeStack:
 print(v);
 SymTable:
-a->true
 v->2
 Out:
 FileTable:
@@ -125,267 +49,9 @@ HashHeap:
 ProgramState no. 0 is:
 ExeStack:
 SymTable:
-a->true
 v->2
 Out:
 2
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-string varf;
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-varf=src/main/java/files/test.in;
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Open file: varf;
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-Out:
-FileTable:
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-int varc;
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->0
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Read from file: varf;
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->0
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->10
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(varc);
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->10
-Out:
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->10
-Out:
-10
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Read from file: varf;
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->10
-Out:
-10
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-print(varc);
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-20
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-Close file: varf;
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-20
-FileTable:
-src/main/java/files/test.in
-HashHeap:
-
-ProgramState no. 0 is:
-ExeStack:
-SymTable:
-varf->src/main/java/files/test.in
-varc->20
-Out:
-10
-20
 FileTable:
 HashHeap:
 
