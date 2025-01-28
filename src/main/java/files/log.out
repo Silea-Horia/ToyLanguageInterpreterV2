@@ -1,13 +1,14 @@
 ProgramState no. 0 is:
 ExeStack:
-int a;
-int b;
-int c;
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+Ref (int) v1;
+int cnt;
+new(v1, 1);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
 Out:
 FileTable:
@@ -15,308 +16,748 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int b;
-int c;
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+int cnt;
+new(v1, 1);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int b;
-int c;
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+int cnt;
+new(v1, 1);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int c;
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+new(v1, 1);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
-b->0
+cnt->0
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int c;
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+new(v1, 1);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
-b->0
+cnt->0
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
-b->0
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-a=1;
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+createSemaphore(cnt, rH(v1));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->0
-b->0
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->0
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-b=2;
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+Fork(acquire(cnt);wh(v1, rH(v1)*10);print(rH(v1));release(cnt));
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->0
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
+
+ProgramState no. 1 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-c=5;
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+Fork(acquire(cnt);wh(v1, rH(v1)*10);wh(v1, rH(v1)*2);print(rH(v1));release(cnt));
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->0
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
+
+ProgramState no. 1 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-switch(a*10) (case b*c: print(a);print(b)) (case 10: print(100);print(200)) (default: print(300);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->1
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->1
 
 ProgramState no. 0 is:
 ExeStack:
-if(a*10==b*c) thenBody(print(a);print(b)) else(if(a*10==10) thenBody(print(100);print(200)) else(print(300)));
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 1 is:
+ExeStack:
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-if(a*10==b*c) thenBody(print(a);print(b)) else(if(a*10==10) thenBody(print(100);print(200)) else(print(300)));
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 1 is:
+ExeStack:
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-print(a);print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
+10
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 1 is:
+ExeStack:
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-print(a);print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
+10
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 1 is:
+ExeStack:
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+acquire(cnt);
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-print(a);
-print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
+10
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-print(a);
-print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
+10
 FileTable:
 HashHeap:
+1->10
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->10
 
 ProgramState no. 0 is:
 ExeStack:
-print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
-1
+10
 FileTable:
 HashHeap:
+1->100
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->100
 
 ProgramState no. 0 is:
 ExeStack:
-print(b);
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
-1
+10
 FileTable:
 HashHeap:
+1->100
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)*2);
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->100
 
 ProgramState no. 0 is:
 ExeStack:
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
-1
-2
+10
 FileTable:
 HashHeap:
+1->200
+
+ProgramState no. 2 is:
+ExeStack:
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->200
 
 ProgramState no. 0 is:
 ExeStack:
-print(300);
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
-1
-2
+10
 FileTable:
 HashHeap:
+1->200
+
+ProgramState no. 2 is:
+ExeStack:
+print(rH(v1));
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+FileTable:
+HashHeap:
+1->200
 
 ProgramState no. 0 is:
 ExeStack:
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
 SymTable:
-a->1
-b->2
-c->5
+cnt->0
+v1->(1, int)
 Out:
-1
-2
-300
+10
+200
 FileTable:
 HashHeap:
+1->200
+
+ProgramState no. 2 is:
+ExeStack:
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 2 is:
+ExeStack:
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 2 is:
+ExeStack:
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+acquire(cnt);
+print(rH(v1)-1);
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1)-1);
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1)-1);
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+FileTable:
+HashHeap:
+1->200
+
+ProgramState no. 0 is:
+ExeStack:
+release(cnt);
+SymTable:
+cnt->0
+v1->(1, int)
+Out:
+10
+200
+199
+FileTable:
+HashHeap:
+1->200
 

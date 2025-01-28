@@ -37,7 +37,8 @@ public class MenuLogic {
                 this.createProgramWindow();
             }
         } catch (RepoException | IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 

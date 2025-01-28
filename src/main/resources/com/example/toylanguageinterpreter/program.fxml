@@ -25,8 +25,8 @@
          <children>
             <TableView fx:id="symbolTable" prefHeight="100.0" prefWidth="250.0">
               <columns>
-                <TableColumn fx:id="stackID" prefWidth="83.0" text="ID" />
-                <TableColumn fx:id="stackValue" minWidth="3.0" prefWidth="200.0" text="Value" />
+                <TableColumn fx:id="symbolID" prefWidth="83.0" text="ID" />
+                <TableColumn fx:id="symbolValue" minWidth="3.0" prefWidth="200.0" text="Value" />
               </columns>
             </TableView>
             <TableView fx:id="heap" prefHeight="127.0" prefWidth="368.0">
@@ -39,6 +39,13 @@
             <ListView fx:id="programStates" onMouseClicked="#updateProgramInfo" onMousePressed="#updateProgramInfo" prefHeight="100.0" prefWidth="155.0" />
          </children>
       </HBox>
+      <TableView fx:id="semaphoreTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="semaphoreID" prefWidth="114.0" text="Index" />
+          <TableColumn fx:id="semaphoreValue" prefWidth="143.0" text="Value" />
+            <TableColumn fx:id="semaphoreList" prefWidth="542.0" text="List" />
+        </columns>
+      </TableView>
       <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />
    </children>
 </VBox>

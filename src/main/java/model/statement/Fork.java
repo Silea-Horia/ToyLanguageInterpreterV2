@@ -17,7 +17,7 @@ public class Fork implements Statement {
     public ProgramState execute(ProgramState state) throws StmtException {
         ExeStack<Statement> newStack = new ExeStack<>();
 
-        return new ProgramState(newStack, state.getSymTable().deepCopy(), state.getOut(), this.newProgram, state.getFileTable(), state.getHeap(), state.getId() + 1);
+        return new ProgramState(newStack, state.getSymTable().deepCopy(), state.getOut(), this.newProgram, state.getFileTable(), state.getSemaphoreTable(), state.getHeap());
     }
 
     @Override

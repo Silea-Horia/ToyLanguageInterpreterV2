@@ -47,9 +47,9 @@ public class ProgramLogic {
     @FXML
     private TableView<Pair<String, Value>> symbolTable;
     @FXML
-    private TableColumn<Pair<String, Value>, String> stackID;
+    private TableColumn<Pair<String, Value>, String> symbolID;
     @FXML
-    private TableColumn<Pair<String, Value>, String> stackValue;
+    private TableColumn<Pair<String, Value>, String> symbolValue;
 
     @FXML
     private ListView<StringValue> fileTable;
@@ -58,8 +58,16 @@ public class ProgramLogic {
     private ListView<ProgramState> programStates;
 
     @FXML
-    private Button oneStep;
+    private TableView<Pair<Integer, Pair<Integer, String>>> semaphoreTable;
+    @FXML
+    private TableColumn<Pair<Integer, Pair<Integer, String>>, Integer> semaphoreID;
+    @FXML
+    private TableColumn<Pair<Integer, Pair<Integer, String>>, Integer> semaphoreValue;
+    @FXML
+    private TableColumn<Pair<Integer, Pair<Integer, String>>, String> semaphoreList;
 
+    @FXML
+    private Button oneStep;
 
     public ProgramLogic(Repository repository) {
         this.repository = repository;
@@ -67,7 +75,24 @@ public class ProgramLogic {
 
     @FXML
     public void initialize() {
-        // exe stack
+        this.setStackFactory();
+
+        this.setSymbolTableFactory();
+
+        this.setHeapFactory();
+
+        this.setOutFactory();
+
+        this.setFileTableFactory();
+
+        this.setProgramStateFactory();
+
+        this.setSemaphoreFactory();
+
+        this.updateWindow();
+    }
+
+    private void setStackFactory() {
         this.executionStack.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Statement item, boolean empty) {
@@ -80,16 +105,19 @@ public class ProgramLogic {
                 }
             }
         });
+    }
 
-        // sym table
-        this.stackID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getKey()));
-        this.stackValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().toString()));
+    private void setSymbolTableFactory() {
+        this.symbolID.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getKey()));
+        this.symbolValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().toString()));
+    }
 
-
-        // heap
+    private void setHeapFactory() {
         this.heapAddress.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
         this.heapValue.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue()));
+    }
 
+    private void setOutFactory() {
         this.out.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Value item, boolean empty) {
@@ -102,7 +130,9 @@ public class ProgramLogic {
                 }
             }
         });
+    }
 
+    private void setFileTableFactory() {
         this.fileTable.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(StringValue item, boolean empty) {
@@ -115,7 +145,9 @@ public class ProgramLogic {
                 }
             }
         });
+    }
 
+    private void setProgramStateFactory() {
         this.programStates.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(ProgramState item, boolean empty) {
@@ -127,8 +159,12 @@ public class ProgramLogic {
                 }
             }
         });
+    }
 
-        this.updateWindow();
+    private void setSemaphoreFactory() {
+        this.semaphoreID.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.semaphoreValue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValue().getKey()).asObject());
+        this.semaphoreList.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().getValue()));
     }
 
     @FXML
@@ -250,6 +286,8 @@ public class ProgramLogic {
         this.updateOut();
 
         this.updateFileTable();
+
+        this.updateSemaphoreTable();
     }
 
     private void updateNoPrograms() {
@@ -277,6 +315,21 @@ public class ProgramLogic {
                         .collect(Collectors.toList()));
 
         this.symbolTable.setItems(data);
+    }
+
+    private void updateSemaphoreTable() {
+        ObservableList<Pair<Integer, Pair<Integer, String>>> data =
+                FXCollections.observableArrayList(this.repository
+                        .getPrgList()
+                        .getFirst()
+                        .getSemaphoreTable()
+                        .getContent()
+                        .entrySet()
+                        .stream()
+                        .map(p -> new Pair<>(p.getKey(), new Pair<>(p.getValue().getKey(), p.getValue().getValue().stream().map(Object::toString).collect(Collectors.joining()))))
+                        .collect(Collectors.toList()));
+
+        this.semaphoreTable.setItems(data);
     }
 
     private void updateExecutionStack() {

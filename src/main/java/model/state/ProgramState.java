@@ -16,17 +16,21 @@ public class ProgramState {
     private final Dictionary<String, Value> symTable;
     private final IOutList<Value> out;
     private final Dictionary<StringValue, BufferedReader> fileTable;
+    private final SemaphoreTable semaphoreTable;
     private final Heap heap;
     private final Integer id;
+    public static Integer nextId = 0;
 
-    public ProgramState(IExeStack<Statement> exeStack, Dictionary<String, Value> symTable, IOutList<Value> out, Statement originalProgram, Dictionary<StringValue, BufferedReader> fileTable, Heap heap, int id) {
+    public ProgramState(IExeStack<Statement> exeStack, Dictionary<String, Value> symTable, IOutList<Value> out, Statement originalProgram, Dictionary<StringValue, BufferedReader> fileTable, SemaphoreTable semaphoreTable, Heap heap) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
+        this.semaphoreTable = semaphoreTable;
         this.heap = heap;
         this.convertToStack(originalProgram);
         this.fileTable = fileTable;
-        this.id = id;
+        this.id = nextId;
+        nextId += 1;
     }
 
     private void convertToStack(Statement stmt) {
@@ -59,6 +63,10 @@ public class ProgramState {
     public Integer getId() {return this.id;}
 
     public Heap getHeap() { return this.heap; }
+
+    public SemaphoreTable getSemaphoreTable() {
+        return this.semaphoreTable;
+    }
 
     public Dictionary<String, Value> getSymTable() {
         return this.symTable;

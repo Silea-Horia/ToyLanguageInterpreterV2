@@ -6,11 +6,9 @@ import model.exception.StmtException;
 import model.expression.*;
 import model.state.ProgramState;
 import model.statement.*;
-import model.type.BoolType;
 import model.type.IntType;
 import model.type.RefType;
 import model.type.StringType;
-import model.value.BoolValue;
 import model.value.IntegerValue;
 import model.value.StringValue;
 
@@ -172,6 +170,35 @@ public class MemoryRepository implements Repository {
         );
     }
 
+    private void generateState8() {
+        this.generatedStatements.add(
+            new Composed(new VariableDeclaration("v1", new RefType(new IntType())),
+                    new Composed(new VariableDeclaration("cnt", new IntType()),
+                            new Composed(new New("v1", new ValueExp(new IntegerValue(1))),
+                                    new Composed(new CreateSemaphore("cnt", new ReadHeapExp(new VariableExp("v1"))),
+                                            new Composed(new Fork(new Composed(new Acquire("cnt"),
+                                                                    new Composed(new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(10)), '*')),
+                                                                        new Composed(new Print(new ReadHeapExp(new VariableExp("v1"))), new Release("cnt")))
+                                                                )),
+                                                    new Composed(new Fork(new Composed(new Acquire("cnt"),
+                                                                                new Composed(new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(10)), '*')),
+                                                                                    new Composed(new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(2)), '*')), new Composed(new Print(new ReadHeapExp(new VariableExp("v1"))), new Release("cnt"))
+                                                                                    )
+                                                                                )
+                                                                        )),
+                                                        new Composed(new Acquire("cnt"),
+                                                                new Composed(new Print(new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(1)), '-')),
+                                                                        new Release("cnt")
+                                                                )
+                                                        )
+                                            )
+                                    )
+                            )
+                    )
+            )
+        ));
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -180,6 +207,7 @@ public class MemoryRepository implements Repository {
         this.generateState5();
         this.generateState6();
         this.generateState7();
+        this.generateState8();
     }
 
     @Override
@@ -191,6 +219,7 @@ public class MemoryRepository implements Repository {
             throw new RepoException(e.getMessage());
         }
         this.programs.clear();
-        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new HashHeap(), 0));
+        ProgramState.nextId = 0;
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new SemaphoreTableImpl(), new HashHeap()));
     }
 }

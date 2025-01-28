@@ -2,7 +2,6 @@ package model.statement;
 
 import model.adt.Dictionary;
 import model.exception.ExpressionException;
-import model.exception.StackException;
 import model.exception.StmtException;
 import model.expression.Expression;
 import model.expression.RelationalExp;
@@ -12,12 +11,12 @@ import model.type.IntType;
 import model.type.Type;
 
 public class Switch implements Statement {
-    private Expression condition;
-    private Expression match1;
-    private Statement block1;
-    private Expression match2;
-    private Statement block2;
-    private Statement defaultBlock;
+    private final Expression condition;
+    private final Expression match1;
+    private final Statement block1;
+    private final Expression match2;
+    private final Statement block2;
+    private final Statement defaultBlock;
 
     public Switch(Expression condition, Expression match1, Statement block1, Expression match2, Statement block2, Statement defaultBlock) {
         this.condition = condition;
@@ -38,7 +37,7 @@ public class Switch implements Statement {
 
     @Override
     public Statement deepCopy() {
-        return new Switch(this.condition, this.match1, this.block1, this.match2, this.block2, this.defaultBlock);
+        return new Switch(this.condition.deepCopy(), this.match1.deepCopy(), this.block1.deepCopy(), this.match2.deepCopy(), this.block2.deepCopy(), this.defaultBlock.deepCopy());
     }
 
     @Override
