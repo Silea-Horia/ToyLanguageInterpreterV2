@@ -46,6 +46,12 @@
             <TableColumn fx:id="semaphoreList" prefWidth="542.0" text="List" />
         </columns>
       </TableView>
+      <TableView fx:id="latchTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="latchLocation" prefWidth="132.0" text="Location" />
+          <TableColumn fx:id="latchValue" prefWidth="667.0" text="Value" />
+        </columns>
+      </TableView>
       <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />
    </children>
 </VBox>

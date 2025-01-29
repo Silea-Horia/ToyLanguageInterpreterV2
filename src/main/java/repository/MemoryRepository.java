@@ -211,6 +211,78 @@ public class MemoryRepository implements Repository {
         );
     }
 
+    private void generateStateLatch() {
+        this.generatedStatements.add(
+            new Composed(
+                    new VariableDeclaration("v1", new RefType(new IntType())),
+                    new Composed(
+                            new VariableDeclaration("v2", new RefType(new IntType())),
+                            new Composed(
+                                    new VariableDeclaration("v3", new RefType(new IntType())),
+                                    new Composed(
+                                            new New("v1", new ValueExp(new IntegerValue(2))),
+                                            new Composed(
+                                                    new New("v2", new ValueExp(new IntegerValue(3))),
+                                                    new Composed(
+                                                            new New("v3", new ValueExp(new IntegerValue(4))),
+                                                            new Composed(
+                                                                    new VariableDeclaration("cnt", new IntType()),
+                                                                    new Composed(
+                                                                            new NewLatch("cnt", new ReadHeapExp(new VariableExp("v2"))),
+                                                                            new Composed(
+                                                                                    new Fork(
+                                                                                            new Composed(
+                                                                                                    new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(10)), '*')),
+                                                                                                    new Composed(
+                                                                                                            new Print(new ReadHeapExp(new VariableExp("v1"))),
+                                                                                                            new Composed(
+                                                                                                                    new CountDown("cnt"),
+                                                                                                                    new Fork(
+                                                                                                                            new Composed(new WriteHeap("v2", new ArithmeticExp(new ReadHeapExp(new VariableExp("v2")), new ValueExp(new IntegerValue(10)), '*')),
+                                                                                                                                new Composed(
+                                                                                                                                        new Print(new ReadHeapExp(new VariableExp("v2"))),
+                                                                                                                                        new Composed(
+                                                                                                                                                new CountDown("cnt"),
+                                                                                                                                                new Fork(
+                                                                                                                                                        new Composed(
+                                                                                                                                                                new WriteHeap("v3", new ArithmeticExp(new ReadHeapExp(new VariableExp("v3")), new ValueExp(new IntegerValue(10)), '*')),
+                                                                                                                                                                new Composed(
+                                                                                                                                                                        new Print(new ReadHeapExp(new VariableExp("v3"))),
+                                                                                                                                                                        new CountDown("cnt")
+                                                                                                                                                                )
+                                                                                                                                                        )
+                                                                                                                                                )
+                                                                                                                                        )
+                                                                                                                                )
+                                                                                                                            )
+                                                                                                                    )
+                                                                                                            )
+                                                                                                    )
+                                                                                            )
+                                                                                ),
+                                                                                    new Composed(
+                                                                                            new Await("cnt"),
+                                                                                            new Composed(
+                                                                                                    new Print(new ValueExp(new IntegerValue(100))),
+                                                                                                    new Composed(
+                                                                                                            new CountDown("cnt"),
+                                                                                                            new Print(new ValueExp(new IntegerValue(100)))
+                                                                                                    )
+                                                                                            )
+                                                                                    )
+                                                                            )
+
+                                                                            )
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+        );
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -221,6 +293,7 @@ public class MemoryRepository implements Repository {
         this.generateStateSwitch();
         this.generateStateSemaphore();
         this.generateStateConditionalAssign();
+        this.generateStateLatch();
     }
 
     @Override
@@ -233,6 +306,6 @@ public class MemoryRepository implements Repository {
         }
         this.programs.clear();
         ProgramState.nextId = 0;
-        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new SemaphoreTableImpl(), new HashHeap()));
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new SemaphoreTableImpl(), new LatchTableImpl(),new HashHeap()));
     }
 }

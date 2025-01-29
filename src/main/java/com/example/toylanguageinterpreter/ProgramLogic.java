@@ -67,6 +67,13 @@ public class ProgramLogic {
     private TableColumn<Pair<Integer, Pair<Integer, String>>, String> semaphoreList;
 
     @FXML
+    private TableView<Pair<Integer, Integer>> latchTable;
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> latchLocation;
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> latchValue;
+
+    @FXML
     private Button oneStep;
 
     public ProgramLogic(Repository repository) {
@@ -88,6 +95,8 @@ public class ProgramLogic {
         this.setProgramStateFactory();
 
         this.setSemaphoreFactory();
+
+        this.setLatchFactory();
 
         this.updateWindow();
     }
@@ -165,6 +174,11 @@ public class ProgramLogic {
         this.semaphoreID.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
         this.semaphoreValue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValue().getKey()).asObject());
         this.semaphoreList.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getValue().getValue()));
+    }
+
+    private void setLatchFactory() {
+        this.latchLocation.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.latchValue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValue()).asObject());
     }
 
     @FXML
@@ -288,6 +302,8 @@ public class ProgramLogic {
         this.updateFileTable();
 
         this.updateSemaphoreTable();
+
+        this.updateLatchTable();
     }
 
     private void updateNoPrograms() {
@@ -330,6 +346,21 @@ public class ProgramLogic {
                         .collect(Collectors.toList()));
 
         this.semaphoreTable.setItems(data);
+    }
+
+    private void updateLatchTable() {
+        ObservableList<Pair<Integer, Integer>> data =
+                FXCollections.observableArrayList(this.repository
+                        .getPrgList()
+                        .getFirst()
+                        .getLatchTable()
+                        .getContent()
+                        .entrySet()
+                        .stream()
+                        .map(p -> new Pair<>(p.getKey(), p.getValue()))
+                        .collect(Collectors.toList()));
+
+        this.latchTable.setItems(data);
     }
 
     private void updateExecutionStack() {
