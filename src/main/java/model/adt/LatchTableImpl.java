@@ -16,7 +16,7 @@ public class LatchTableImpl implements LatchTable {
 
     private void getNextFree() {
         int current = 0;
-        while (current < this.lastFree && this.table.containsKey(current)) current++;
+        while (this.table.containsKey(current)) current++;
         this.lastFree = current;
     }
 

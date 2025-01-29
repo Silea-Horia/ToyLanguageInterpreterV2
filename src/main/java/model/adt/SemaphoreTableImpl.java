@@ -20,7 +20,7 @@ public class SemaphoreTableImpl implements SemaphoreTable {
 
     private void getNextFree() {
         int nextFree = 0;
-        while (nextFree < this.currentFree && this.table.containsKey(nextFree)) nextFree++;
+        while (this.table.containsKey(nextFree)) nextFree++;
         this.currentFree = nextFree;
     }
 
