@@ -283,6 +283,21 @@ public class MemoryRepository implements Repository {
         );
     }
 
+    private void generateStateFor() {
+        this.generatedStatements.add(
+                new Composed(
+                        new VariableDeclaration("a", new RefType(new IntType())),
+                        new Composed(
+                                new New("a", new ValueExp(new IntegerValue(20))),
+                                new Composed(
+                                        new For("v", new ValueExp(new IntegerValue(0)), new ValueExp(new IntegerValue(3)), new ArithmeticExp(new VariableExp("v"), new ValueExp(new IntegerValue(1)), '+'), new Fork(new Composed(new Print(new VariableExp("v")), new Assign("v", new ArithmeticExp(new VariableExp("v"), new ReadHeapExp(new VariableExp("a")), '*'))))),
+                                        new Print(new ReadHeapExp(new VariableExp("a")))
+                                )
+                        )
+                )
+        );
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -294,6 +309,7 @@ public class MemoryRepository implements Repository {
         this.generateStateSemaphore();
         this.generateStateConditionalAssign();
         this.generateStateLatch();
+        this.generateStateFor();
     }
 
     @Override

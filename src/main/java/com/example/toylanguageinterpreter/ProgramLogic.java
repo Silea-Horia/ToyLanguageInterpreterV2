@@ -331,6 +331,7 @@ public class ProgramLogic {
                         .collect(Collectors.toList()));
 
         this.symbolTable.setItems(data);
+        this.symbolTable.refresh();
     }
 
     private void updateSemaphoreTable() {

@@ -20,7 +20,7 @@ public class FileTable<K, V> implements Dictionary<K, V> {
 
     @Override
     public void remove(K k) throws DictionaryException {
-        if (!this.map.containsKey(k)) throw new DictionaryException("Key doesn't exist");
+        if (!this.map.containsKey(k)) throw new DictionaryException("FileTable: Key doesn't exist");
         this.map.remove(k);
     }
 
@@ -31,7 +31,7 @@ public class FileTable<K, V> implements Dictionary<K, V> {
 
     @Override
     public V lookup(K k) throws DictionaryException {
-        if (!this.map.containsKey(k)) throw new DictionaryException("Key doesn't exist");
+        if (!this.map.containsKey(k)) throw new DictionaryException("FileTable: Key doesn't exist");
         return this.map.get(k);
     }
 

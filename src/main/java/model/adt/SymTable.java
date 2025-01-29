@@ -18,7 +18,7 @@ public class SymTable<K, V> implements Dictionary<K, V> {
 
     @Override
     public void remove(K k) throws DictionaryException {
-        if (!this.map.containsKey(k)) throw new DictionaryException("Key doesn't exist!\n");
+        if (!this.map.containsKey(k)) throw new DictionaryException("SymTable: Key doesn't exist!\n");
         this.map.remove(k);
     }
 
@@ -29,7 +29,7 @@ public class SymTable<K, V> implements Dictionary<K, V> {
 
     @Override
     public V lookup(K k) throws DictionaryException {
-        if (!this.map.containsKey(k)) throw new DictionaryException("Key doesn't exist!\n");
+        if (!this.map.containsKey(k)) throw new DictionaryException("SymTable: Key doesn't exist!\n");
         return this.map.get(k);
     }
 
