@@ -17,7 +17,7 @@
       <TextField fx:id="noPrograms" editable="false" />
       <HBox prefHeight="138.0" prefWidth="800.0">
          <children>
-            <ListView fx:id="executionStack" prefHeight="100.0" prefWidth="600.0" />
+            <ListView fx:id="executionStack" prefHeight="153.0" prefWidth="550.0" />
             <ListView fx:id="out" prefHeight="42.0" prefWidth="300.0" />
          </children>
       </HBox>
@@ -39,17 +39,23 @@
             <ListView fx:id="programStates" onMouseClicked="#updateProgramInfo" onMousePressed="#updateProgramInfo" prefHeight="100.0" prefWidth="155.0" />
          </children>
       </HBox>
-      <TableView fx:id="semaphoreTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="semaphoreTable" prefHeight="125.0" prefWidth="800.0">
         <columns>
           <TableColumn fx:id="semaphoreID" prefWidth="114.0" text="Index" />
           <TableColumn fx:id="semaphoreValue" prefWidth="143.0" text="Value" />
             <TableColumn fx:id="semaphoreList" prefWidth="542.0" text="List" />
         </columns>
       </TableView>
-      <TableView fx:id="latchTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="latchTable" prefHeight="85.0" prefWidth="800.0">
         <columns>
           <TableColumn fx:id="latchLocation" prefWidth="132.0" text="Location" />
           <TableColumn fx:id="latchValue" prefWidth="667.0" text="Value" />
+        </columns>
+      </TableView>
+      <TableView fx:id="lockTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="lockLocation" prefWidth="136.0" text="Location" />
+          <TableColumn fx:id="lockValue" prefWidth="663.0" text="Value" />
         </columns>
       </TableView>
       <Button fx:id="oneStep" mnemonicParsing="false" onAction="#runOneStep" text="Run One Step" />

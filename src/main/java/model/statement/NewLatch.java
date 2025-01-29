@@ -31,10 +31,10 @@ public class NewLatch implements Statement {
 
             int place = state.getLatchTable().insert(((IntegerValue)number).getValue());
 
-            Dictionary<String, Value> stack = state.getSymTable();
+            Dictionary<String, Value> symTable = state.getSymTable();
 
-            if (stack.contains(this.variableId) && stack.lookup(this.variableId).getType().equals(new IntType())) {
-                stack.insert(this.variableId, new IntegerValue(place));
+            if (symTable.contains(this.variableId) && symTable.lookup(this.variableId).getType().equals(new IntType())) {
+                symTable.insert(this.variableId, new IntegerValue(place));
                 return null;
             }
 

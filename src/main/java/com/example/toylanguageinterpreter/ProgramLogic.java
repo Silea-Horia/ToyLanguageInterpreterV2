@@ -74,6 +74,13 @@ public class ProgramLogic {
     private TableColumn<Pair<Integer, Integer>, Integer> latchValue;
 
     @FXML
+    private TableView<Pair<Integer, Integer>> lockTable;
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> lockLocation;
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> lockValue;
+
+    @FXML
     private Button oneStep;
 
     public ProgramLogic(Repository repository) {
@@ -97,6 +104,8 @@ public class ProgramLogic {
         this.setSemaphoreFactory();
 
         this.setLatchFactory();
+
+        this.setLockFactory();
 
         this.updateWindow();
     }
@@ -179,6 +188,11 @@ public class ProgramLogic {
     private void setLatchFactory() {
         this.latchLocation.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
         this.latchValue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValue()).asObject());
+    }
+
+    private void setLockFactory() {
+        this.lockLocation.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getKey()).asObject());
+        this.lockValue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValue()).asObject());
     }
 
     @FXML
@@ -304,6 +318,8 @@ public class ProgramLogic {
         this.updateSemaphoreTable();
 
         this.updateLatchTable();
+
+        this.updateLockTable();
     }
 
     private void updateNoPrograms() {
@@ -362,6 +378,21 @@ public class ProgramLogic {
                         .collect(Collectors.toList()));
 
         this.latchTable.setItems(data);
+    }
+
+    private void updateLockTable() {
+        ObservableList<Pair<Integer, Integer>> data =
+                FXCollections.observableArrayList(this.repository
+                        .getPrgList()
+                        .getFirst()
+                        .getLockTable()
+                        .getContent()
+                        .entrySet()
+                        .stream()
+                        .map(p -> new Pair<>(p.getKey(), p.getValue()))
+                        .collect(Collectors.toList()));
+
+        this.lockTable.setItems(data);
     }
 
     private void updateExecutionStack() {

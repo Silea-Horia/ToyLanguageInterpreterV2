@@ -1,9 +1,25 @@
 ProgramState no. 0 is:
 ExeStack:
-Ref (int) a;
-new(a, 20);
-For(v=0; v<3; v=v+1) Fork(print(v);v=v*rH(a));
-print(rH(a));
+Ref (int) v1;
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
 Out:
 FileTable:
@@ -11,32 +27,242 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(a, 20);
-For(v=0; v<3; v=v+1) Fork(print(v);v=v*rH(a));
-print(rH(a));
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(0, int)
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-new(a, 20);
-For(v=0; v<3; v=v+1) Fork(print(v);v=v*rH(a));
-print(rH(a));
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(0, int)
+v1->(0, int)
 Out:
 FileTable:
 HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-For(v=0; v<3; v=v+1) Fork(print(v);v=v*rH(a));
-print(rH(a));
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
 Out:
 FileTable:
 HashHeap:
@@ -44,10 +270,26 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-For(v=0; v<3; v=v+1) Fork(print(v);v=v*rH(a));
-print(rH(a));
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
 Out:
 FileTable:
 HashHeap:
@@ -55,669 +297,5728 @@ HashHeap:
 
 ProgramState no. 0 is:
 ExeStack:
-int v;v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-int v;v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-int v;
-v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-int v;
-v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
-
-ProgramState no. 0 is:
-ExeStack:
-v=0;While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-v=0;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-v=0;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->0
-Out:
-FileTable:
-HashHeap:
-1->20
+2->30
 
 ProgramState no. 1 is:
 ExeStack:
-print(v);
-v=v*rH(a);
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 1 is:
 ExeStack:
-print(v);
-v=v*rH(a);
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 1 is:
 ExeStack:
-v=v*rH(a);
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 1 is:
 ExeStack:
-v=v*rH(a);
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
 
 ProgramState no. 1 is:
 ExeStack:
 SymTable:
-a->(1, int)
-v->0
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v1;
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
 FileTable:
 HashHeap:
 1->20
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 2 is:
 ExeStack:
-print(v);
-v=v*rH(a);
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->1
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 2 is:
 ExeStack:
-print(v);
-v=v*rH(a);
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
 FileTable:
 HashHeap:
 1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 2 is:
 ExeStack:
-v=v*rH(a);
+wh(v1, rH(v1)-1);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 2 is:
 ExeStack:
-v=v*rH(a);
+wh(v1, rH(v1)-1);
+Unlock(x);
 SymTable:
-a->(1, int)
-v->1
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 0 is:
 ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
-1->20
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
 
 ProgramState no. 2 is:
 ExeStack:
 SymTable:
-a->(1, int)
-v->20
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
 FileTable:
 HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-Fork(print(v);v=v*rH(a));
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
+1->19
+2->30
 
 ProgramState no. 3 is:
 ExeStack:
-print(v);
-v=v*rH(a);
+wh(v2, rH(v2)*10);
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v1;
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
 FileTable:
 HashHeap:
 1->20
 
 ProgramState no. 0 is:
 ExeStack:
-v=v+1;
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
 Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 3 is:
-ExeStack:
-print(v);
-v=v*rH(a);
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 0 is:
-ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
-SymTable:
-a->(1, int)
-v->3
-Out:
-0
-1
-2
-FileTable:
-HashHeap:
-1->20
-
-ProgramState no. 3 is:
-ExeStack:
-v=v*rH(a);
-SymTable:
-a->(1, int)
-v->2
-Out:
-0
-1
-2
 FileTable:
 HashHeap:
 1->20
 
 ProgramState no. 0 is:
 ExeStack:
-While(v<3) Fork(print(v);v=v*rH(a));v=v+1;
-print(rH(a));
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->3
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
-2
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
 
 ProgramState no. 3 is:
 ExeStack:
-v=v*rH(a);
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
 SymTable:
-a->(1, int)
-v->2
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
-2
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->200
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 2 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 3 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+305
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+305
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+199
+305
+FileTable:
+HashHeap:
+1->199
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v1;
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+Ref (int) v2;
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int x;
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+int q;
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v1, 20);
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(0, int)
+v2->(0, int)
+Out:
+FileTable:
+HashHeap:
+
+ProgramState no. 0 is:
+ExeStack:
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
+Out:
 FileTable:
 HashHeap:
 1->20
 
 ProgramState no. 0 is:
 ExeStack:
-print(rH(a));
+new(v2, 30);
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->3
+q->0
+x->0
+v1->(1, int)
+v2->(0, int)
 Out:
-0
-1
-2
 FileTable:
 HashHeap:
 1->20
 
-ProgramState no. 3 is:
+ProgramState no. 0 is:
 ExeStack:
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
 SymTable:
-a->(1, int)
-v->40
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
 Out:
-0
-1
-2
 FileTable:
 HashHeap:
 1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(x);
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));Lock(x);wh(v1, rH(v1)*10);Unlock(x));
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NewLock(q);
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Fork(Lock(x);wh(v1, rH(v1)-1);Unlock(x));
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+Fork(Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));Lock(q);wh(v2, rH(v2)*10);Unlock(q));
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+wh(v1, rH(v1)-1);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Fork(Lock(q);wh(v2, rH(v2)+5);Unlock(q));
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->20
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+Lock(x);
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 2 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 1 is:
+ExeStack:
+wh(v1, rH(v1)*10);
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 3 is:
+ExeStack:
+wh(v2, rH(v2)*10);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->19
+2->30
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+NOP;
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+Unlock(x);
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+Lock(q);
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 1 is:
+ExeStack:
+SymTable:
+q->0
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 3 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(x);
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 4 is:
+ExeStack:
+wh(v2, rH(v2)+5);
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->300
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v1));
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 4 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(x);
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Lock(q);
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+print(rH(v2));
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+Unlock(q);
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
+
+ProgramState no. 0 is:
+ExeStack:
+SymTable:
+q->1
+x->0
+v1->(1, int)
+v2->(2, int)
+Out:
+190
+305
+FileTable:
+HashHeap:
+1->190
+2->305
 

@@ -2,6 +2,7 @@ package repository;
 
 import model.adt.*;
 import model.exception.RepoException;
+import model.exception.StackException;
 import model.exception.StmtException;
 import model.expression.*;
 import model.state.ProgramState;
@@ -298,6 +299,182 @@ public class MemoryRepository implements Repository {
         );
     }
 
+    private ExeStack<Statement> lockStack() {
+        ExeStack<Statement> stack = new ExeStack<>();
+        stack.push(new Unlock("q"));
+        stack.push(new Print(new ReadHeapExp(new VariableExp("v2"))));
+        stack.push(new Lock("q"));
+        stack.push(new Unlock("x"));
+        stack.push(new Print(new ReadHeapExp(new VariableExp("v1"))));
+        stack.push(new Lock("x"));
+        stack.push(new Nop());
+        stack.push(new Nop());
+        stack.push(new Nop());
+        stack.push(new Nop());
+        stack.push(new Fork(
+                new Composed(
+                        new Fork(
+                                new Composed(
+                                        new Lock("q"),
+                                        new Composed(
+                                                new WriteHeap("v2", new ArithmeticExp(new ReadHeapExp(new VariableExp("v2")), new ValueExp(new IntegerValue(5)), '+')),
+                                                new Unlock("q")
+                                        )
+                                )
+                        ),
+                        new Composed(
+                                new Lock("q"),
+                                new Composed(
+                                        new WriteHeap("v2", new ArithmeticExp(new ReadHeapExp(new VariableExp("v2")), new ValueExp(new IntegerValue(10)), '*')),
+                                        new Unlock("q")
+                                )
+                        )
+                )
+        ));
+        stack.push(new NewLock("q"));
+        stack.push(new Fork(
+                new Composed(
+                        new Fork(
+                                new Composed(
+                                        new Lock("x"),
+                                        new Composed(
+                                                new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(1)), '-')),
+                                                new Unlock("x")
+                                        )
+                                )
+                        ),
+                        new Composed(
+                                new Lock("x"),
+                                new Composed(
+                                        new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(10)), '*')),
+                                        new Unlock("x")
+                                )
+                        )
+                )
+        ));
+        stack.push(new NewLock("x"));
+        stack.push(new New("v2", new ValueExp(new IntegerValue(30))));
+        stack.push(new New("v1", new ValueExp(new IntegerValue(20))));
+        stack.push(new VariableDeclaration("q", new IntType()));
+        stack.push(new VariableDeclaration("x", new IntType()));
+        stack.push(new VariableDeclaration("v2", new RefType(new IntType())));
+        stack.push(new VariableDeclaration("v1", new RefType(new IntType())));
+
+        return stack;
+    }
+
+    private Statement stackToStatement(ExeStack<Statement> stack) {
+        Statement stmt;
+        try {
+             stmt = stack.pop();
+        } catch (StackException e) {
+            throw new RuntimeException(e);
+        }
+        if (stack.isEmpty()) {
+            return stmt;
+        }
+        return new Composed(stmt, stackToStatement(stack));
+    }
+
+    private void generateStateLock() {
+        this.generatedStatements.add(stackToStatement(lockStack()));
+//        this.generatedStatements.add(
+//                new Composed(
+//                        new VariableDeclaration("v1", new RefType(new IntType())),
+//                        new Composed(
+//                                new VariableDeclaration("v2", new RefType(new IntType())),
+//                                new Composed(
+//                                        new VariableDeclaration("x", new IntType()),
+//                                        new Composed(
+//                                                new VariableDeclaration("q", new IntType()),
+//                                                new Composed(
+//                                                        new New("v1", new ValueExp(new IntegerValue(20))),
+//                                                        new Composed(
+//                                                                new New("v2", new ValueExp(new IntegerValue(30))),
+//                                                                new Composed(
+//                                                                        new NewLock("x"),
+//                                                                        new Composed(
+//                                                                                new Fork(new Composed(
+//                                                                                        new Fork(
+//                                                                                                new Composed(
+//                                                                                                        new Lock("x"),
+//                                                                                                        new Composed(
+//                                                                                                                new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(1)), '-')),
+//                                                                                                                new Unlock("x")
+//                                                                                                        )
+//                                                                                                )
+//                                                                                        ),
+//                                                                                        new Composed(
+//                                                                                                new Lock("x"),
+//                                                                                                new Composed(
+//                                                                                                        new WriteHeap("v1", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(10)), '*')),
+//                                                                                                        new Unlock("x")
+//                                                                                                )
+//                                                                                        )
+//                                                                                )
+//                                                                                ),
+//                                                                                new Composed(
+//                                                                                        new NewLock("q"),
+//                                                                                        new Composed(
+//                                                                                                 new Fork(
+//                                                                                                         new Composed(
+//                                                                                                                 new Fork(
+//                                                                                                                         new Composed(
+//                                                                                                                                 new Lock("q"),
+//                                                                                                                                 new Composed(
+//                                                                                                                                         new WriteHeap("v2", new ArithmeticExp(new ReadHeapExp(new VariableExp("v1")), new ValueExp(new IntegerValue(5)), '+')),
+//                                                                                                                                         new Unlock("q")
+//                                                                                                                                 )
+//                                                                                                                         )
+//                                                                                                                 ),
+//                                                                                                                 new Composed(
+//                                                                                                                         new Lock("q"),
+//                                                                                                                         new Composed(
+//                                                                                                                                 new WriteHeap("v2", new ArithmeticExp(new ReadHeapExp(new VariableExp("v2")), new ValueExp(new IntegerValue(10)), '*')),
+//                                                                                                                                 new Unlock("q")
+//                                                                                                                         )
+//                                                                                                                 )
+//                                                                                                         )
+//                                                                                                 ),
+//                                                                                                new Composed(
+//                                                                                                        new Nop(),
+//                                                                                                        new Composed(
+//                                                                                                                new Nop(),
+//                                                                                                                new Composed(
+//                                                                                                                        new Nop(),
+//                                                                                                                        new Composed(
+//                                                                                                                                new Lock("x"),
+//                                                                                                                                new Composed(
+//                                                                                                                                        new Print(new ReadHeapExp(new VariableExp("v1"))),
+//                                                                                                                                        new Composed(
+//                                                                                                                                                new Unlock("x"),
+//                                                                                                                                                new Composed(
+//                                                                                                                                                        new Lock("q"),
+//                                                                                                                                                        new Composed(
+//                                                                                                                                                                new Print(new ReadHeapExp(new VariableExp("v2"))),
+//                                                                                                                                                                new Unlock("q")
+//                                                                                                                                                        )
+//                                                                                                                                                )
+//                                                                                                                                        )
+//                                                                                                                                )
+//                                                                                                                        )
+//                                                                                                                )
+//                                                                                                        )
+//                                                                                                )
+//                                                                                        )
+//
+//                                                                                )
+//                                                                        )
+//                                                                )
+//                                                        )
+//                                                )
+//                                        )
+//                                )
+//                        )
+//                )
+//        );
+    }
+
     private void generateStates() {
         this.generateState1();
         this.generateState2();
@@ -310,10 +487,12 @@ public class MemoryRepository implements Repository {
         this.generateStateConditionalAssign();
         this.generateStateLatch();
         this.generateStateFor();
+        this.generateStateLock();
     }
 
     @Override
     public void setState(int option) throws RepoException{
+
         Statement initialStatement = this.generatedStatements.get(option);
         try {
             initialStatement.typeCheck(new HashDictionary<>());
@@ -322,6 +501,6 @@ public class MemoryRepository implements Repository {
         }
         this.programs.clear();
         ProgramState.nextId = 0;
-        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new SemaphoreTableImpl(), new LatchTableImpl(),new HashHeap()));
+        this.programs.add(new ProgramState(new ExeStack<>(), new SymTable<>(), new Out<>(), initialStatement, new FileTable<>(), new SemaphoreTableImpl(), new LatchTableImpl(), new LockTableImpl(), new HashHeap()));
     }
 }
